@@ -12,3 +12,7 @@ func _physics_process(delta):
 func set_direction(var_direction:Vector2):
 	bullet_direction = var_direction
 	rotation += var_direction.angle()
+
+
+func _on_timer_timeout():
+	queue_free()
