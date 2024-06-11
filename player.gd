@@ -14,10 +14,12 @@ func _physics_process(delta):
 	
 	if direction:
 		velocity = direction * movement_speed
+		$AnimationPlayer.play("RUN")
 	else:
 		velocity.x = move_toward(velocity.x,0,movement_speed)
 		velocity.y = move_toward(velocity.y,0,movement_speed)
-	
+	if velocity == Vector2.ZERO:
+		$AnimationPlayer.play("IDLE")
 	if mouse_direction.x > 0 and $Sprite2D.flip_h:
 		$Sprite2D.flip_h = false
 		weapon_sprite.flip_v = false
