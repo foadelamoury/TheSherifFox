@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://02lpvk0xhpjd"]
+
+[ext_resource type="Script" path="res://Scenes/inventory.gd" id="1_gqgwk"]
+[ext_resource type="PackedScene" uid="uid://b0n35uiq3igdy" path="res://Scenes/inv_slot.tscn" id="3_i0ker"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_gqgwk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 30.0
+offset_right = 402.0
+offset_bottom = 545.0
+color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InventoryContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="ColorRect/MarginContainer/InventoryContainer"]
+layout_mode = 2
+columns = 7
+
+[node name="InvSlot" parent="ColorRect/MarginContainer/InventoryContainer/GridContainer" instance=ExtResource("3_i0ker")]
+layout_mode = 2
+
+[node name="InvSlot2" parent="ColorRect/MarginContainer/InventoryContainer/GridContainer" instance=ExtResource("3_i0ker")]
+layout_mode = 2
+
+[node name="InvSlot3" parent="ColorRect/MarginContainer/InventoryContainer/GridContainer" instance=ExtResource("3_i0ker")]
+layout_mode = 2
+accessible = false
+
+[node name="InvSlot4" parent="ColorRect/MarginContainer/InventoryContainer/GridContainer" instance=ExtResource("3_i0ker")]
+layout_mode = 2
+accessible = false
