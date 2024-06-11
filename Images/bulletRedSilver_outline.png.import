@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbnr7vwe1vv2u"
-path="res://.godot/imported/AnimationSheet.png-a824d6ccef1c68fe18f6f2039676c09b.ctex"
+uid="uid://kxcdefwg33g4"
+path="res://.godot/imported/bulletRedSilver_outline.png-93e099be163f0ede1dede6f38b00f599.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://AnimationSheet.png"
-dest_files=["res://.godot/imported/AnimationSheet.png-a824d6ccef1c68fe18f6f2039676c09b.ctex"]
+source_file="res://Images/bulletRedSilver_outline.png"
+dest_files=["res://.godot/imported/bulletRedSilver_outline.png-93e099be163f0ede1dede6f38b00f599.ctex"]
 
 [params]
 

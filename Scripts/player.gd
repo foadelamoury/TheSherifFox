@@ -1,8 +1,12 @@
 extends CharacterBody2D
 
+signal player_fired_bullet(Bullet,bullet_position,bullet_direction)
+
 @onready var weapon_pivot = $WeaponPivot
 @onready var weapon_sprite = $WeaponPivot/GunSprite
-
+@onready var EndOfGun = $WeaponPivot/EndOfGun
+@onready var GunDirection = $WeaponPivot/GunDirection
+@export var bullet :PackedScene
 @export var movement_speed = 300.0
 @export var direction_speed = 1.2
 
@@ -26,7 +30,15 @@ func _physics_process(delta):
 	elif mouse_direction.x < 0 and !$Sprite2D.flip_h:
 		$Sprite2D.flip_h = true
 		weapon_sprite.flip_v = true
-	
 	move_and_slide()
-	
 	weapon_pivot.look_at(get_global_mouse_position())
+	
+func _unhandled_input(event):
+	if event.is_action_released("shoot"):
+		shoot()
+		
+func shoot():
+	var bullet_instance = bullet.instantiate()
+	var bullet_position = EndOfGun.global_position
+	var bullet_direction = (GunDirection.global_position - EndOfGun.global_position).normalized()
+	player_fired_bullet.emit(bullet_instance,bullet_position,bullet_direction)
