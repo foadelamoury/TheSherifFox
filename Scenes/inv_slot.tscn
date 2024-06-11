@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0n35uiq3igdy"]
+
+[ext_resource type="Texture2D" uid="uid://s2tab6xwphco" path="res://Images/inventory_texture.png" id="1_a44o1"]
+[ext_resource type="Script" path="res://Scenes/inv_slot.gd" id="2_822pr"]
+
+[node name="InvSlot" type="TextureRect"]
+custom_minimum_size = Vector2(50, 50)
+texture = ExtResource("1_a44o1")
+expand_mode = 1
+script = ExtResource("2_822pr")
