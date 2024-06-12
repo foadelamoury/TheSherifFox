@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cd846qcsp2gnt"]
 
 [ext_resource type="Texture2D" uid="uid://dh1rxevs7d072" path="res://Images/bulletYellowSilver_outline.png" id="1_61u6a"]
-[ext_resource type="Script" path="res://Scenes/player_bullet.gd" id="1_h4vc6"]
+[ext_resource type="Script" path="res://Scripts/player_bullet.gd" id="1_b1com"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yr5s8"]
 size = Vector2(11.76, 16.03)
@@ -9,7 +9,7 @@ size = Vector2(11.76, 16.03)
 [node name="Area2D" type="Area2D"]
 rotation = 1.5708
 scale = Vector2(1.955, 1.955)
-script = ExtResource("1_h4vc6")
+script = ExtResource("1_b1com")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_yr5s8")
