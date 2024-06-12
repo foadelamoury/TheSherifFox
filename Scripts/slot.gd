@@ -4,7 +4,7 @@ signal slot_entered(slot)
 signal slot_exited(slot)
 
 @onready var filter = $StatusFilter
-
+@export var accessible = true
 var slot_ID
 var is_hovering:=false
 enum States {DEFAULT, TAKEN, FREE}

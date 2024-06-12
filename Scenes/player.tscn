@@ -81,7 +81,7 @@ _data = {
 "WALK": SubResource("Animation_tvbql")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 scale = Vector2(3, 3)
 script = ExtResource("1_i753s")
 bullet = ExtResource("2_bauvq")

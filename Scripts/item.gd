@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var IconRect_path = $Icon
 
-var item_ID : int
+@export var item_ID : int
 var item_grids := []
 var selected = false
 var grid_anchor = null

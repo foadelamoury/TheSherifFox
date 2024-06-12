@@ -1,22 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://02lpvk0xhpjd"]
+[gd_scene load_steps=2 format=3 uid="uid://bdq71e34x3qx2"]
 
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="1_gqgwk"]
-[ext_resource type="PackedScene" uid="uid://b0n35uiq3igdy" path="res://Scenes/inv_slot.tscn" id="3_i0ker"]
 
-[node name="Inventory" type="Control"]
+[node name="Inventory" type="Control" groups=["Inventory"]]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_gqgwk")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 28.0
-offset_top = 30.0
-offset_right = 402.0
-offset_bottom = 545.0
-color = Color(0.187176, 0.187176, 0.187176, 1)
+offset_left = 129.0
+offset_top = 62.0
+offset_right = 549.0
+offset_bottom = 582.0
+color = Color(0.14902, 0.0823529, 0.0823529, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+[node name="MarginContainer" type="MarginContainer" parent="Background"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,48 +27,86 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer"]
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
+[node name="Header" type="HBoxContainer" parent="Background/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+size_flags_vertical = 2
+theme_override_constants/separation = 0
 
-[node name="GridContainer" type="GridContainer" parent="ColorRect/MarginContainer/VBoxContainer/ScrollContainer"]
+[node name="Button_Spawn" type="Button" parent="Background/MarginContainer/VBoxContainer/Header"]
+custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 6
 size_flags_vertical = 4
+theme_override_font_sizes/font_size = 20
+text = "Spawn Item"
 
-[node name="Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
-custom_minimum_size = Vector2(30, 30)
+[node name="Add_slot" type="Button" parent="Background/MarginContainer/VBoxContainer/Header"]
+custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 6
 size_flags_vertical = 4
+text = "Add Slot"
 
-[node name="GridContainer" type="GridContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Background/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 420)
 layout_mode = 2
-columns = 7
+size_flags_vertical = 3
 
-[node name="InvSlot" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_i0ker")]
+[node name="GridContainer" type="GridContainer" parent="Background/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 8
+
+[node name="Background2" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 700.0
+offset_top = 62.0
+offset_right = 1120.0
+offset_bottom = 582.0
+color = Color(0.14902, 0.0823529, 0.0823529, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Background2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background2/MarginContainer"]
 layout_mode = 2
 
-[node name="InvSlot2" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_i0ker")]
+[node name="Header" type="HBoxContainer" parent="Background2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+size_flags_vertical = 2
+theme_override_constants/separation = 0
 
-[node name="InvSlot3" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_i0ker")]
+[node name="Button_Spawn" type="Button" parent="Background2/MarginContainer/VBoxContainer/Header"]
+custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 20
+text = "Spawn Item"
 
-[node name="InvSlot4" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_i0ker")]
+[node name="ScrollContainer" type="ScrollContainer" parent="Background2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 420)
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="InvSlot5" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_i0ker")]
+[node name="GridContainer" type="GridContainer" parent="Background2/MarginContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
+theme_override_constants/h_separation = 1
+theme_override_constants/v_separation = 1
+columns = 8
 
-[node name="InvSlot6" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_i0ker")]
-layout_mode = 2
-
-[node name="InvSlot7" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_i0ker")]
-layout_mode = 2
-
-[node name="InvSlot8" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_i0ker")]
-layout_mode = 2
+[connection signal="pressed" from="Background/MarginContainer/VBoxContainer/Header/Button_Spawn" to="." method="_on_button_spawn_pressed"]
+[connection signal="pressed" from="Background/MarginContainer/VBoxContainer/Header/Add_slot" to="." method="_on_add_slot_pressed"]
+[connection signal="pressed" from="Background2/MarginContainer/VBoxContainer/Header/Button_Spawn" to="." method="_on_button_spawn_pressed"]

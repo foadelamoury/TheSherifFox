@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bi2b4ukanfch2"]
+[gd_scene load_steps=6 format=3 uid="uid://bi2b4ukanfch2"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_tme1b"]
 [ext_resource type="PackedScene" uid="uid://cacmnwuabbpi6" path="res://Scenes/player.tscn" id="2_2c1ls"]
 [ext_resource type="Script" path="res://Scripts/BulletManager.gd" id="3_c6quy"]
+[ext_resource type="PackedScene" uid="uid://cunr3nov8fkx6" path="res://Scenes/pick_up_item.tscn" id="4_g78pd"]
+[ext_resource type="PackedScene" uid="uid://bdq71e34x3qx2" path="res://Scenes/inventory.tscn" id="5_mboi7"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_tme1b")
@@ -12,3 +14,12 @@ position = Vector2(570, 348)
 
 [node name="BulletManager" type="Node2D" parent="."]
 script = ExtResource("3_c6quy")
+
+[node name="PickUpItem" parent="." instance=ExtResource("4_g78pd")]
+
+[node name="Inventory" parent="." instance=ExtResource("5_mboi7")]
+offset_left = -26.0
+offset_top = -12.0
+offset_right = -26.0
+offset_bottom = -12.0
+scale = Vector2(0.68, 0.68)
