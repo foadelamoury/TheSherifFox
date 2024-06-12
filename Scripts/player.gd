@@ -10,6 +10,9 @@ signal player_fired_bullet(Bullet,bullet_position,bullet_direction)
 @export var movement_speed = 300.0
 @export var direction_speed = 1.2
 
+# TODO: Please make an @onready reference to the Animation Player to be consistent in the coding style
+# TODO: Please be typesafe with function return types not inherited from base class (e.g. shoot())
+
 func _physics_process(delta):
 	
 	var mouse_direction: Vector2 = (get_global_mouse_position() - global_position).normalized()
