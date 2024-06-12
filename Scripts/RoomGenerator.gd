@@ -36,7 +36,7 @@ func make_grid(sizeX: int, sizeY: int) -> Array[Array]:
 		grid.append(row)
 	return grid
 
-func generate_dungeon(grid: Array[Array], branch_length: int, dead_end_chance: float, dead_end_max: int) -> Array[Array]:
+func generate_dungeon(grid: Array[Array], branch_length: int, dead_end_chance: float, dead_end_max: int) -> Variant:
 	var _grid: Array[Array] = grid
 	var x_size: int = _grid[0].size()
 	var y_size: int = _grid.size()
@@ -111,13 +111,18 @@ func generate_dungeon(grid: Array[Array], branch_length: int, dead_end_chance: f
 			_grid[current_y][current_x] = Room.new(Room.room_type.END, []) if i == branch_length - 1 else Room.new(Room.room_type.GENERIC, [inverse_room_dir])
 		else:
 			push_error("GEN401 | Room has no valid directions.")
+			return -1
 
 	return _grid
 
 func _ready():
-	var grid: Array[Array] = make_grid(x, y)
-	grid = generate_dungeon(grid, 5, 0.0, 0)
-	render_dungeon(grid)
+	var generation_done: bool = false
+	var grid: Variant
+	while !generation_done:
+		grid = make_grid(x, y)
+		grid = generate_dungeon(grid, 5, 0.0, 0)
+		if grid:
+			generation_done = true
 
 func _process(delta):
 	pass
