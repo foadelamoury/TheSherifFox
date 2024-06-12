@@ -5,6 +5,28 @@ extends Node
 var x: int = 4
 var y: int = 4
 
+func render_dungeon(grid: Array[Array]):
+	var x: int = grid[0].size()
+	var y: int = grid.size()
+	var img: Image = Image.create(x, y, false, Image.FORMAT_RGB8)
+	var rownum: int = 0
+	for row in grid:
+		var cellnum: int = 0
+		for cell in row:
+			var color: Color
+			if cell.type == Room.room_type.EMPTY:
+				color = Color(255, 255, 255)
+			elif cell.type == Room.room_type.START:
+				color = Color(255, 0, 0)
+			elif cell.type == Room.room_type.END:
+				color = Color(0, 255, 0)
+			elif cell.type == Room.room_type.GENERIC:
+				color = Color(0, 0, 0)
+			img.set_pixel(cellnum, rownum, color)
+			cellnum += 1
+		rownum += 1
+	img.save_png("C:/Users/Fabian/Desktop/gen/dungeon" + str(Time.get_ticks_usec()) + ".png")
+
 func make_grid(sizeX: int, sizeY: int) -> Array[Array]:
 	var grid: Array[Array] = []
 	for i in range(sizeX):
@@ -95,7 +117,7 @@ func generate_dungeon(grid: Array[Array], branch_length: int, dead_end_chance: f
 func _ready():
 	var grid: Array[Array] = make_grid(x, y)
 	grid = generate_dungeon(grid, 5, 0.0, 0)
-	print(grid)
+	render_dungeon(grid)
 
 func _process(delta):
 	pass
