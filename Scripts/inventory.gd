@@ -12,11 +12,17 @@ var item_held = null
 var current_slot = null
 var can_place := false
 var icon_anchor : Vector2
+enum States {DEFAULT, TAKEN, FREE}
+var state = States.DEFAULT
+var dragging = false
+var drag_preview = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for i in range(14):
+	for i in range(20):
 		create_slot()
-	
+	for i in range(20):
+		if i>=10:
+			grid_container.get_child(i).accessible = false
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,7 +30,6 @@ func _process(delta):
 	if item_held:
 		if Input.is_action_just_pressed("mouse_rightclick"):
 			rotate_item()
-		
 		if Input.is_action_just_pressed("mouse_leftclick"):
 			if scroll_container.get_global_rect().has_point(get_global_mouse_position()):
 				place_item()
@@ -33,17 +38,21 @@ func _process(delta):
 	else:
 		if Input.is_action_just_pressed("mouse_leftclick"):
 			if scroll_container.get_global_rect().has_point(get_global_mouse_position()):
-				pick_item()
-	
-	
+				pick_item()	
+	if drag_preview:
+		var preview = $Background.get_child(1)
+		preview.global_position = get_global_mouse_position()
+		if not preview.visible:
+			preview.visible = true
+			
 func create_slot():
 	var new_slot = slot_scene.instantiate()
 	new_slot.slot_ID = grid_array.size()
 	grid_container.add_child(new_slot)
 	grid_array.push_back(new_slot)
+	new_slot.slot_clicked.connect(slot_clicked)
 	new_slot.slot_entered.connect(_on_slot_mouse_entered)
 	new_slot.slot_exited.connect(_on_slot_mouse_exited)
-	pass
 
 
 func _on_slot_mouse_entered(a_Slot):
@@ -58,7 +67,30 @@ func _on_slot_mouse_exited(a_Slot):
 	
 	if not grid_container.get_global_rect().has_point(get_global_mouse_position()):
 		current_slot = null
-
+func slot_clicked(a_Slot):
+	if not dragging:
+		if a_Slot.accessible:
+			var preview_texture = TextureRect.new()
+			preview_texture.texture = a_Slot.texture
+			preview_texture.expand_mode = 2
+			preview_texture.size = Vector2(60,60)
+			var preview = Control.new()
+			preview.name = "preview"
+			a_Slot.accessible = false
+			preview.visible = false
+			preview.add_child(preview_texture)
+			$Background.add_child(preview)
+			drag_preview = true
+			dragging = true
+	else:
+		if not a_Slot.accessible:
+			var preview = $Background.get_child(1)
+			a_Slot.filter.color = Color("#261515")
+			#a_Slot.texture = preview.texture
+			a_Slot.accessible = true
+			preview.queue_free()
+			drag_preview = false
+			dragging = false
 func _on_button_spawn_pressed():
 	var new_item = item_scene.instantiate()
 	add_child(new_item)
@@ -99,13 +131,19 @@ func set_grids(a_Slot):
 			if grid[1] < icon_anchor.x: icon_anchor.x = grid[1]
 			if grid[0] < icon_anchor.y: icon_anchor.y = grid[0]
 				
-		else:
-			grid_array[grid_to_check].set_color(grid_array[grid_to_check].States.TAKEN)
+		#else:
+			#if a_Slot.accessible:
+				#grid_array[grid_to_check].set_color(grid_array[grid_to_check].States.TAKEN)
 
 func clear_grid():
 	for grid in grid_array:
 		grid.set_color(grid.States.DEFAULT)
-
+	for slot in grid_container.get_children():
+		if slot.is_in_group("Slot"):
+			if slot.accessible:
+				slot.filter.color = Color("#ff000000")
+			else:
+				slot.filter.color = Color("#261515")
 func rotate_item():
 	item_held.rotate_item()
 	clear_grid()

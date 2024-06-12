@@ -2,20 +2,31 @@ extends TextureRect
 
 signal slot_entered(slot)
 signal slot_exited(slot)
-
+signal slot_clicked(slot)
 @onready var filter = $StatusFilter
-@export var accessible = true
+
 var slot_ID
 var is_hovering:=false
 enum States {DEFAULT, TAKEN, FREE}
 var state = States.DEFAULT
+@export var accessible = true:
+	set(value):
+		accessible = value
+		if not value:
+			filter.color = Color("#261515")
+			state = States.TAKEN
+		else:
+			filter.color = Color("#ff000000")
+			state = States.DEFAULT
 var item_stored = null
+var dragging = false
 
-
+@onready var inventory = get_tree().get_first_node_in_group("Inventory")
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	if not accessible:
+		filter.color = Color(("#261515"))
+		state = States.TAKEN
 func set_color(a_state = States.DEFAULT) -> void :
 	match a_state:
 		States.DEFAULT:
@@ -27,11 +38,16 @@ func set_color(a_state = States.DEFAULT) -> void :
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+
 	if get_global_rect().has_point(get_global_mouse_position()):
 		if not is_hovering:
 			is_hovering = true
 			emit_signal("slot_entered",self)
+		if Input.is_action_just_pressed("mouse_leftclick"):
+			if inventory.item_held == null and item_stored == null:
+				emit_signal("slot_clicked",self)
 	else:
 		if is_hovering:
 			is_hovering = false
-			emit_signal("slot_exited",self)
+			emit_signal("slot_exited",self)	
+
