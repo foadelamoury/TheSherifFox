@@ -40,7 +40,7 @@ func _unhandled_input(event):
 	if event.is_action_released("shoot"):
 		shoot()
 		
-func shoot():
+func shoot() -> void:
 	var bullet_instance = bullet.instantiate()
 	var bullet_position = EndOfGun.global_position
 	var bullet_direction = (GunDirection.global_position - EndOfGun.global_position).normalized()
