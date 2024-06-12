@@ -18,8 +18,7 @@ script = ExtResource("3_c6quy")
 [node name="PickUpItem" parent="." instance=ExtResource("4_g78pd")]
 
 [node name="Inventory" parent="." instance=ExtResource("5_mboi7")]
-offset_left = -26.0
-offset_top = -12.0
-offset_right = -26.0
-offset_bottom = -12.0
-scale = Vector2(0.68, 0.68)
+offset_left = -113.0
+offset_top = -33.0
+offset_right = -113.0
+offset_bottom = -33.0
