@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cunr3nov8fkx6"]
+[gd_scene load_steps=4 format=3 uid="uid://cunr3nov8fkx6"]
 
 [ext_resource type="PackedScene" uid="uid://cgm6b2tpenwep" path="res://Scenes/item.tscn" id="1_jr3h7"]
 [ext_resource type="Script" path="res://Scenes/pick_up_item.gd" id="1_wthxl"]
-[ext_resource type="Texture2D" uid="uid://c64vv0rhihshv" path="res://Assets/Item1.png" id="2_k3f8l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_arhga"]
 radius = 38.71
@@ -14,10 +13,6 @@ script = ExtResource("1_wthxl")
 [node name="Item" parent="." instance=ExtResource("1_jr3h7")]
 item_ID = 1
 
-[node name="Icon" parent="Item" index="0"]
-texture = ExtResource("2_k3f8l")
-expand_mode = 1
-
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -25,5 +20,3 @@ shape = SubResource("CircleShape2D_arhga")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
-
-[editable path="Item"]

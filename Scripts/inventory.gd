@@ -6,7 +6,7 @@ extends Control
 @onready var scroll_container = $Background/MarginContainer/VBoxContainer/ScrollContainer
 @onready var col_count = grid_container.columns #save column number
 @onready var grid_container2 = $Background2/MarginContainer/VBoxContainer/ScrollContainer/GridContainer
-
+@onready var PickUpItem = preload("res://Scenes/pick_up_item.tscn")
 var grid_array := []
 var item_held = null
 var current_slot = null
@@ -28,6 +28,8 @@ func _process(delta):
 		if Input.is_action_just_pressed("mouse_leftclick"):
 			if scroll_container.get_global_rect().has_point(get_global_mouse_position()):
 				place_item()
+			else:
+				place_pickup()
 	else:
 		if Input.is_action_just_pressed("mouse_leftclick"):
 			if scroll_container.get_global_rect().has_point(get_global_mouse_position()):
@@ -152,8 +154,18 @@ func pick_item():
 	check_slot_availability(current_slot)
 	set_grids.call_deferred(current_slot)
 	
+func place_pickup():
+	var new_pickup = PickUpItem.instantiate()
+	#new_pickup.get_child(0).load_item(item_held.item_ID)
+	var item = new_pickup.get_child(0)
+	var icon:TextureRect = new_pickup.get_child(0).get_child(0)
+	item.item_ID = item_held.item_ID
+	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	get_tree().get_root().add_child(new_pickup)
+	new_pickup.global_position =  get_global_mouse_position()
 	
-
+	item_held.get_parent().remove_child(item_held)
+	item_held = null
 
 func _on_add_slot_pressed():
 	create_slot()

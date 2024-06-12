@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var IconRect_path = $Icon
-
 @export var item_ID : int
 var item_grids := []
 var selected = false
@@ -18,6 +17,7 @@ func _process(delta):
 		global_position = lerp(global_position, get_global_mouse_position(), 25 * delta)
 
 func load_item(a_ItemID : int) -> void:
+	item_ID = a_ItemID
 	var Icon_path = "res://Assets/" + DataHandler.item_data[str(a_ItemID)]["Name"] + ".png"
 	IconRect_path.texture = load(Icon_path)
 	for grid in DataHandler.item_grid_data[str(a_ItemID)]:
