@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_i753s"]
 [ext_resource type="Resource" uid="uid://ddnstq1giiay" path="res://Data/Weapons/Revolver.tres" id="2_7pgw1"]
 [ext_resource type="Texture2D" uid="uid://bbnr7vwe1vv2u" path="res://Images/AnimationSheet.png" id="2_ikoqt"]
-[ext_resource type="Texture2D" uid="uid://dlgo6ca0lokpc" path="res://Assets/Revolver.png" id="4_kiy88"]
+[ext_resource type="Texture2D" uid="uid://dlgo6ca0lokpc" path="res://Assets/ColtSingleActionArmy.png" id="4_tast1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m7466"]
 
@@ -109,7 +109,7 @@ position = Vector2(0, -8)
 texture_filter = 1
 position = Vector2(6.66, 0.465)
 scale = Vector2(0.6, 0.6)
-texture = ExtResource("4_kiy88")
+texture = ExtResource("4_tast1")
 
 [node name="EndOfGun" type="Node2D" parent="WeaponPivot/GunSprite"]
 position = Vector2(24.75, -11.3)

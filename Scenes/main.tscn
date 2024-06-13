@@ -17,8 +17,23 @@ script = ExtResource("3_c6quy")
 
 [node name="PickUpItem" parent="." instance=ExtResource("4_g78pd")]
 
+[node name="Item" parent="PickUpItem" index="0"]
+scale = Vector2(2, 2)
+item_ID = 5
+
+[node name="PickUpItem2" parent="." instance=ExtResource("4_g78pd")]
+position = Vector2(221, 236)
+
+[node name="Item" parent="PickUpItem2" index="0"]
+scale = Vector2(2, 2)
+item_ID = 6
+
 [node name="Inventory" parent="." instance=ExtResource("5_mboi7")]
+visible = false
 offset_left = -113.0
 offset_top = -33.0
 offset_right = -113.0
 offset_bottom = -33.0
+
+[editable path="PickUpItem"]
+[editable path="PickUpItem2"]
