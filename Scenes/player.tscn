@@ -1,9 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cacmnwuabbpi6"]
+[gd_scene load_steps=9 format=3 uid="uid://cacmnwuabbpi6"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_i753s"]
-[ext_resource type="Resource" uid="uid://ddnstq1giiay" path="res://Data/Weapons/Revolver.tres" id="2_7pgw1"]
 [ext_resource type="Texture2D" uid="uid://bbnr7vwe1vv2u" path="res://Images/AnimationSheet.png" id="2_ikoqt"]
-[ext_resource type="Texture2D" uid="uid://dlgo6ca0lokpc" path="res://Assets/Revolver.png" id="4_kiy88"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m7466"]
 
@@ -84,7 +82,6 @@ _data = {
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 scale = Vector2(3, 3)
 script = ExtResource("1_i753s")
-gun_equipped = ExtResource("2_7pgw1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -109,7 +106,6 @@ position = Vector2(0, -8)
 texture_filter = 1
 position = Vector2(6.66, 0.465)
 scale = Vector2(0.6, 0.6)
-texture = ExtResource("4_kiy88")
 
 [node name="EndOfGun" type="Node2D" parent="WeaponPivot/GunSprite"]
 position = Vector2(24.75, -11.3)

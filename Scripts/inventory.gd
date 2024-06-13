@@ -169,11 +169,14 @@ func place_item():
 		grid_array[grid_to_check].item_stored = item_held
 	
 	#put item into a data storage here
+
 	items.append(item_held)
 	item_held = null
 	clear_grid()
 	
 func pick_item():
+	if dragging:
+		return
 	if not current_slot or not current_slot.item_stored: 
 		return
 	item_held = current_slot.item_stored

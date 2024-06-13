@@ -5,10 +5,9 @@ signal player_fired_bullet(Bullet,bullet_position,bullet_direction)
 @onready var weapon_pivot = $WeaponPivot
 @export var gun_equipped:Weapon
 @onready var weapon_sprite = $WeaponPivot/GunSprite
-@onready var weapon_icon = gun_equipped.icon
 @onready var EndOfGun = $WeaponPivot/GunSprite/EndOfGun
 @onready var GunDirection = $WeaponPivot/GunSprite/GunDirection
-@onready var bullet = gun_equipped.bullet_type
+
 @export var movement_speed = 300.0
 @export var direction_speed = 1.2
 @onready var Inventory = get_tree().get_first_node_in_group("Inventory")
@@ -54,24 +53,27 @@ func _unhandled_input(event):
 	if event.is_action_released("switch_guns"):
 		switch_guns()
 func shoot() -> void:
-	var bullet_instance = bullet.instantiate()
-	var bullet_position = EndOfGun.global_position
-	var bullet_direction = (GunDirection.global_position - EndOfGun.global_position).normalized()
-	player_fired_bullet.emit(bullet_instance,bullet_position,bullet_direction)
+	if gun_equipped !=null:
+		var bullet = gun_equipped.bullet_type
+		var bullet_instance = bullet.instantiate()
+		var bullet_position = EndOfGun.global_position
+		var bullet_direction = (GunDirection.global_position - EndOfGun.global_position).normalized()
+		player_fired_bullet.emit(bullet_instance,bullet_position,bullet_direction)
 
 func change_gun():
-	weapon_icon = gun_equipped.icon
-	weapon_sprite.texture = weapon_icon
-	EndOfGun.global_position = weapon_sprite.global_position
-	GunDirection.global_position = EndOfGun.global_position
-	if not flipped:
-		EndOfGun.global_position.x += weapon_sprite.texture.get_width()
+	if gun_equipped !=null:
+		var weapon_icon = gun_equipped.icon
+		weapon_sprite.texture = weapon_icon
+		EndOfGun.global_position = weapon_sprite.global_position
 		GunDirection.global_position = EndOfGun.global_position
-		GunDirection.global_position.x += 5
-	else:
-		EndOfGun.global_position.x -= weapon_sprite.texture.get_width()
-		GunDirection.global_position = EndOfGun.global_position
-		GunDirection.global_position.x -= 5
+		if not flipped:
+			EndOfGun.global_position.x += weapon_sprite.texture.get_width()
+			GunDirection.global_position = EndOfGun.global_position
+			GunDirection.global_position.x += 5
+		else:
+			EndOfGun.global_position.x -= weapon_sprite.texture.get_width()
+			GunDirection.global_position = EndOfGun.global_position
+			GunDirection.global_position.x -= 5
 func switch_guns():
 	var items:Array = Inventory.items
 	var guns_equipped:Array
