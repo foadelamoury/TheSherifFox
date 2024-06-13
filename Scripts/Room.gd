@@ -4,7 +4,8 @@ enum room_type {
 	EMPTY,
 	START,
 	END,
-	GENERIC
+	GENERIC,
+	MAIN_BRANCH
 }
 
 enum direction {
