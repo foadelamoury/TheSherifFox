@@ -4,8 +4,8 @@ signal player_fired_bullet(Bullet,bullet_position,bullet_direction)
 
 @onready var weapon_pivot = $WeaponPivot
 @onready var weapon_sprite = $WeaponPivot/GunSprite
-@onready var EndOfGun = $WeaponPivot/EndOfGun
-@onready var GunDirection = $WeaponPivot/GunDirection
+@onready var EndOfGun = $WeaponPivot/GunSprite/EndOfGun
+@onready var GunDirection = $WeaponPivot/GunSprite/GunDirection
 @export var bullet :PackedScene
 @export var movement_speed = 300.0
 @export var direction_speed = 1.2
@@ -29,10 +29,12 @@ func _physics_process(delta):
 		$AnimationPlayer.play("IDLE")
 	if mouse_direction.x > 0 and $Sprite2D.flip_h:
 		$Sprite2D.flip_h = false
-		weapon_sprite.flip_v = false
+		if weapon_sprite.scale.y < 0:
+			weapon_sprite.scale.y = -weapon_sprite.scale.y
 	elif mouse_direction.x < 0 and !$Sprite2D.flip_h:
 		$Sprite2D.flip_h = true
-		weapon_sprite.flip_v = true
+		if weapon_sprite.scale.y > 0:
+			weapon_sprite.scale.y = -weapon_sprite.scale.y
 	move_and_slide()
 	weapon_pivot.look_at(get_global_mouse_position())
 	

@@ -111,8 +111,10 @@ position = Vector2(6.66, 0.465)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_rgvdy")
 
-[node name="EndOfGun" type="Node2D" parent="WeaponPivot"]
-position = Vector2(14.085, -2.925)
+[node name="EndOfGun" type="Node2D" parent="WeaponPivot/GunSprite"]
+position = Vector2(24.75, -11.3)
+scale = Vector2(3.33333, 3.33333)
 
-[node name="GunDirection" type="Node2D" parent="WeaponPivot"]
-position = Vector2(15.325, -2.925)
+[node name="GunDirection" type="Node2D" parent="WeaponPivot/GunSprite"]
+position = Vector2(28.911, -11.3)
+scale = Vector2(3.33333, 3.33333)
