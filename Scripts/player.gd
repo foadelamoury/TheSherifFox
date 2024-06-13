@@ -80,6 +80,7 @@ func change_gun():
 		reloadTimer.wait_time = gun_equipped.reload_speed
 		var weapon_icon = gun_equipped.icon
 		weapon_sprite.texture = weapon_icon
+		weapon_pivot.rotation = 0
 		EndOfGun.global_position = weapon_sprite.global_position
 		GunDirection.global_position = EndOfGun.global_position
 		if not flipped:
@@ -119,6 +120,8 @@ func reload():
 	reloading = true
 	reloadTimer.start()
 func check_gun():
+	if gun_equipped == null:
+		return
 	var items:Array = Inventory.items
 	var guns_equipped:Array
 	weapons_folder.list_dir_begin()

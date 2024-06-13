@@ -7,7 +7,6 @@ func _ready():
 	Player.bullet_ui.connect(Callable(self,"change_ui"))
 	change_ui()
 func change_ui():
-	print("change")
 	if Player.gun_equipped == null:
 		for child in container.get_children():
 			child.visible = false
