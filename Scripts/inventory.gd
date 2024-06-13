@@ -23,7 +23,6 @@ func _ready():
 	for i in range(20):
 		if i>=10:
 			grid_container.get_child(i).accessible = false
-	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -214,3 +213,15 @@ func _unhandled_input(event):
 			visible = false
 		else:
 			visible = true
+func add_slot():
+	var slots:Array
+	for child in grid_container.get_children():
+		if child.is_in_group("Slot") and not child.accessible:
+			slots.append(child)
+	slots[0].accessible = true
+func remove_slot():
+	var slots:Array
+	for child in grid_container.get_children():
+		if child.is_in_group("Slot") and child.accessible:
+			slots.append(child)
+	slots[-1].accessible = false
