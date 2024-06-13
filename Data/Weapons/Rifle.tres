@@ -12,3 +12,6 @@ clip_size = 2
 bullet_type = ExtResource("1_0chf1")
 icon = ExtResource("2_kmj1v")
 Grid = ""
+shooting_speed = 1.0
+reload_speed = 6
+rounds = 2

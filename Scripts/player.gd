@@ -7,7 +7,8 @@ signal player_fired_bullet(Bullet,bullet_position,bullet_direction)
 @onready var weapon_sprite = $WeaponPivot/GunSprite
 @onready var EndOfGun = $WeaponPivot/GunSprite/EndOfGun
 @onready var GunDirection = $WeaponPivot/GunSprite/GunDirection
-
+@onready var shootTimer = $ShootTimer
+@onready var reloadTimer = $ReloadTimer
 @export var movement_speed = 300.0
 @export var direction_speed = 1.2
 @onready var Inventory = get_tree().get_first_node_in_group("Inventory")
@@ -15,6 +16,8 @@ var weapons_path = "res://Data/Weapons/"
 var weapons_folder = DirAccess.open(weapons_path)
 var weapon_wheel:int = 0
 var flipped = false
+var shooting = false
+var reloading = false
 # TODO: Please make an @onready reference to the Animation Player to be consistent in the coding style
 # TODO: Please be typesafe with function return types not inherited from base class (e.g. shoot())
 func _ready():
@@ -54,14 +57,21 @@ func _unhandled_input(event):
 		switch_guns()
 func shoot() -> void:
 	if gun_equipped !=null:
-		var bullet = gun_equipped.bullet_type
-		var bullet_instance = bullet.instantiate()
-		var bullet_position = EndOfGun.global_position
-		var bullet_direction = (GunDirection.global_position - EndOfGun.global_position).normalized()
-		player_fired_bullet.emit(bullet_instance,bullet_position,bullet_direction)
-
+		if not shooting and not reloading and gun_equipped.rounds>=1:
+			shooting = true
+			shootTimer.start()
+			var bullet = gun_equipped.bullet_type
+			var bullet_instance = bullet.instantiate()
+			var bullet_position = EndOfGun.global_position
+			var bullet_direction = (GunDirection.global_position - EndOfGun.global_position).normalized()
+			player_fired_bullet.emit(bullet_instance,bullet_position,bullet_direction)
+			gun_equipped.rounds -=1
+			if gun_equipped.rounds ==0:
+				reload()
 func change_gun():
 	if gun_equipped !=null:
+		shootTimer.wait_time = gun_equipped.shooting_speed
+		reloadTimer.wait_time = gun_equipped.reload_speed
 		var weapon_icon = gun_equipped.icon
 		weapon_sprite.texture = weapon_icon
 		EndOfGun.global_position = weapon_sprite.global_position
@@ -96,3 +106,14 @@ func switch_guns():
 	weapon_wheel+=1
 	if weapon_wheel > (guns_equipped.size()-1):
 		weapon_wheel = 0
+
+func reload():
+	reloading = true
+	reloadTimer.start()
+func _on_shoot_timer_timeout():
+	shooting = false
+
+
+func _on_reload_timer_timeout():
+	reloading = false
+	gun_equipped.rounds = gun_equipped.clip_size

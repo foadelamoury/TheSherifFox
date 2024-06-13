@@ -114,3 +114,12 @@ scale = Vector2(3.33333, 3.33333)
 [node name="GunDirection" type="Node2D" parent="WeaponPivot/GunSprite"]
 position = Vector2(28.911, -11.3)
 scale = Vector2(3.33333, 3.33333)
+
+[node name="ShootTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ReloadTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
