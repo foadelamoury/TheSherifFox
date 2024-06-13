@@ -7,6 +7,7 @@ extends Control
 @onready var col_count = grid_container.columns #save column number
 @onready var grid_container2 = $Background2/MarginContainer/VBoxContainer/ScrollContainer/GridContainer
 @onready var PickUpItem = preload("res://Scenes/pick_up_item.tscn")
+@onready var Player = get_tree().get_first_node_in_group("Player")
 var items:Array
 var grid_array := []
 var item_held = null
@@ -208,6 +209,7 @@ func place_pickup():
 	item_held.get_parent().remove_child(item_held)
 	items.erase(item_held)
 	item_held = null
+	Player.check_gun()
 func _on_add_slot_pressed():
 	create_slot()
 

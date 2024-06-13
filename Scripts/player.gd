@@ -1,9 +1,12 @@
 extends CharacterBody2D
 
 signal player_fired_bullet(Bullet,bullet_position,bullet_direction)
-
+signal bullet_ui()
 @onready var weapon_pivot = $WeaponPivot
-@export var gun_equipped:Weapon
+@export var gun_equipped:Weapon:
+	set(value):
+		gun_equipped = value
+		bullet_ui.emit()
 @onready var weapon_sprite = $WeaponPivot/GunSprite
 @onready var EndOfGun = $WeaponPivot/GunSprite/EndOfGun
 @onready var GunDirection = $WeaponPivot/GunSprite/GunDirection
@@ -21,6 +24,7 @@ var reloading = false
 # TODO: Please make an @onready reference to the Animation Player to be consistent in the coding style
 # TODO: Please be typesafe with function return types not inherited from base class (e.g. shoot())
 func _ready():
+	bullet_ui.emit()
 	if gun_equipped != null:
 		change_gun()
 func _physics_process(delta):
@@ -66,10 +70,12 @@ func shoot() -> void:
 			var bullet_direction = (GunDirection.global_position - EndOfGun.global_position).normalized()
 			player_fired_bullet.emit(bullet_instance,bullet_position,bullet_direction)
 			gun_equipped.rounds -=1
+			bullet_ui.emit()
 			if gun_equipped.rounds ==0:
 				reload()
 func change_gun():
 	if gun_equipped !=null:
+		bullet_ui.emit()
 		shootTimer.wait_time = gun_equipped.shooting_speed
 		reloadTimer.wait_time = gun_equipped.reload_speed
 		var weapon_icon = gun_equipped.icon
@@ -84,6 +90,8 @@ func change_gun():
 			EndOfGun.global_position.x -= weapon_sprite.texture.get_width()
 			GunDirection.global_position = EndOfGun.global_position
 			GunDirection.global_position.x -= 5
+	else:
+		weapon_sprite.texture = null
 func switch_guns():
 	var items:Array = Inventory.items
 	var guns_equipped:Array
@@ -110,10 +118,37 @@ func switch_guns():
 func reload():
 	reloading = true
 	reloadTimer.start()
+func check_gun():
+	var items:Array = Inventory.items
+	var guns_equipped:Array
+	weapons_folder.list_dir_begin()
+	var all_weapons:Array
+	while true:
+		var temp_weapon = weapons_folder.get_next()
+		if temp_weapon == "":
+			break
+		all_weapons.append(temp_weapon)
+	for z in range(all_weapons.size()):
+		for i in range(items.size()):
+			var temp_weapon = load(weapons_path+all_weapons[z])
+			if items[i].item_ID == temp_weapon.item_ID:
+				guns_equipped.append(temp_weapon)
+	if guns_equipped.is_empty():
+		print("!!!")
+	var is_player_gun_in_inventory = false
+	for i in range(guns_equipped.size()):
+		if guns_equipped[i].name == gun_equipped.name:
+			is_player_gun_in_inventory = false
+	if not is_player_gun_in_inventory:
+		gun_equipped = null
+		change_gun()
+	
 func _on_shoot_timer_timeout():
 	shooting = false
 
 
 func _on_reload_timer_timeout():
 	reloading = false
-	gun_equipped.rounds = gun_equipped.clip_size
+	if gun_equipped!= null:
+		gun_equipped.rounds = gun_equipped.clip_size
+		bullet_ui.emit()
