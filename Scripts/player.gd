@@ -15,18 +15,20 @@ signal bullet_ui()
 @export var movement_speed = 300.0
 @export var direction_speed = 1.2
 @onready var Inventory = get_tree().get_first_node_in_group("Inventory")
+@onready var animation_player = $AnimationPlayer
+@onready var sprite_2d = $Sprite2D
 var weapons_path = "res://Data/Weapons/"
 var weapons_folder = DirAccess.open(weapons_path)
 var weapon_wheel:int = 0
 var flipped = false
 var shooting = false
 var reloading = false
-# TODO: Please make an @onready reference to the Animation Player to be consistent in the coding style
-# TODO: Please be typesafe with function return types not inherited from base class (e.g. shoot())
+
 func _ready():
 	bullet_ui.emit()
 	if gun_equipped != null:
 		change_gun()
+
 func _physics_process(delta):
 	
 	var mouse_direction: Vector2 = (get_global_mouse_position() - global_position).normalized()
@@ -35,20 +37,20 @@ func _physics_process(delta):
 	
 	if direction:
 		velocity = direction * movement_speed
-		$AnimationPlayer.play("RUN")
+		animation_player.play("RUN")
 	else:
 		velocity.x = move_toward(velocity.x,0,movement_speed)
 		velocity.y = move_toward(velocity.y,0,movement_speed)
 	if velocity == Vector2.ZERO:
-		$AnimationPlayer.play("IDLE")
-	if mouse_direction.x > 0 and $Sprite2D.flip_h:
+		animation_player.play("IDLE")
+	if mouse_direction.x > 0 and sprite_2d.flip_h:
 		flipped = false
-		$Sprite2D.flip_h = false
+		sprite_2d.flip_h = false
 		if weapon_sprite.scale.y < 0:
 			weapon_sprite.scale.y = -weapon_sprite.scale.y
-	elif mouse_direction.x < 0 and !$Sprite2D.flip_h:
+	elif mouse_direction.x < 0 and !sprite_2d.flip_h:
 		flipped = true
-		$Sprite2D.flip_h = true
+		sprite_2d.flip_h = true
 		if weapon_sprite.scale.y > 0:
 			weapon_sprite.scale.y = -weapon_sprite.scale.y
 	move_and_slide()
@@ -59,6 +61,7 @@ func _unhandled_input(event):
 		shoot()
 	if event.is_action_released("switch_guns"):
 		switch_guns()
+		
 func shoot() -> void:
 	if gun_equipped !=null:
 		if not shooting and not reloading and gun_equipped.rounds>=1:
@@ -73,7 +76,7 @@ func shoot() -> void:
 			bullet_ui.emit()
 			if gun_equipped.rounds ==0:
 				reload()
-func change_gun():
+func change_gun() -> void:
 	if gun_equipped !=null:
 		bullet_ui.emit()
 		shootTimer.wait_time = gun_equipped.shooting_speed
@@ -93,7 +96,8 @@ func change_gun():
 			GunDirection.global_position.x -= 5
 	else:
 		weapon_sprite.texture = null
-func switch_guns():
+		
+func switch_guns() -> void:
 	var items:Array = Inventory.items
 	var guns_equipped:Array
 	weapons_folder.list_dir_begin()
@@ -116,10 +120,11 @@ func switch_guns():
 	if weapon_wheel > (guns_equipped.size()-1):
 		weapon_wheel = 0
 
-func reload():
+func reload() -> void:
 	reloading = true
 	reloadTimer.start()
-func check_gun():
+	
+func check_gun() -> void:
 	if gun_equipped == null:
 		return
 	var items:Array = Inventory.items
@@ -148,7 +153,6 @@ func check_gun():
 	
 func _on_shoot_timer_timeout():
 	shooting = false
-
 
 func _on_reload_timer_timeout():
 	reloading = false
