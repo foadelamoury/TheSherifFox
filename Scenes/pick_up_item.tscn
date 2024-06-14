@@ -7,7 +7,6 @@
 radius = 38.71
 
 [node name="PickUpItem" type="Node2D"]
-position = Vector2(100, 300)
 script = ExtResource("1_wthxl")
 
 [node name="Item" parent="." instance=ExtResource("1_jr3h7")]

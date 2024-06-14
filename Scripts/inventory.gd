@@ -198,12 +198,11 @@ func pick_item():
 	
 func place_pickup():
 	var new_pickup = PickUpItem.instantiate()
-	#new_pickup.get_child(0).load_item(item_held.item_ID)
 	var item = new_pickup.get_child(0)
-	var icon:TextureRect = new_pickup.get_child(0).get_child(0)
 	item.item_ID = item_held.item_ID
-	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	var icon:TextureRect = new_pickup.get_child(0).get_child(0)
 	get_tree().get_root().add_child(new_pickup)
+	#icon.expand_mode = TextureRect.EXPAND_KEEP_SIZE
 	new_pickup.global_position =  get_global_mouse_position()
 	item_held.get_parent().remove_child(item_held)
 	items.erase(item_held)
@@ -215,7 +214,7 @@ func pickup_at_player():
 	var item = new_pickup.get_child(0)
 	var icon:TextureRect = new_pickup.get_child(0).get_child(0)
 	item.item_ID = item_held.item_ID
-	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	#icon.expand_mode = TextureRect.EXPAND_KEEP_SIZE
 	get_tree().get_root().add_child(new_pickup)
 	new_pickup.global_position =  Player.global_position+ Vector2(randf_range(0,3),randf_range(0,3))
 	item_held.get_parent().remove_child(item_held)
