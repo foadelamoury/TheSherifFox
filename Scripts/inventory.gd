@@ -205,14 +205,30 @@ func place_pickup():
 	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	get_tree().get_root().add_child(new_pickup)
 	new_pickup.global_position =  get_global_mouse_position()
-	
 	item_held.get_parent().remove_child(item_held)
 	items.erase(item_held)
 	item_held = null
 	Player.check_gun()
+func pickup_at_player():
+	var new_pickup = PickUpItem.instantiate()
+	#new_pickup.get_child(0).load_item(item_held.item_ID)
+	var item = new_pickup.get_child(0)
+	var icon:TextureRect = new_pickup.get_child(0).get_child(0)
+	item.item_ID = item_held.item_ID
+	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	get_tree().get_root().add_child(new_pickup)
+	new_pickup.global_position =  Player.global_position+ Vector2(randf_range(0,3),randf_range(0,3))
+	item_held.get_parent().remove_child(item_held)
+	items.erase(item_held)
+	for grid in item_held.item_grids:
+		var grid_to_check = item_held.grid_anchor.slot_ID + grid[0] + grid[1] * col_count # use grid anchor instead of current slot to prevent bug
+		grid_array[grid_to_check].state = grid_array[grid_to_check].States.TAKEN
+		grid_array[grid_to_check].item_stored = null
+	item_held = null
+	Player.check_gun()	
 func _on_add_slot_pressed():
-	create_slot()
-
+	#create_slot()
+	remove_slot()
 func _unhandled_input(event):
 	if event.is_action_released("ui_focus_next"):
 		if visible:
@@ -231,3 +247,8 @@ func remove_slot():
 		if child.is_in_group("Slot") and child.accessible:
 			slots.append(child)
 	slots[-1].accessible = false
+	current_slot = slots[-1]
+	if current_slot.item_stored:
+		item_held = current_slot.item_stored
+		current_slot.item_stored = null
+		pickup_at_player()
