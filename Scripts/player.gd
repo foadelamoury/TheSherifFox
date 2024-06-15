@@ -26,11 +26,10 @@ var reloading = false
 
 func _ready():
 	bullet_ui.emit()
-	if gun_equipped != null:
-		change_gun()
+	change_gun()
 
 func _physics_process(delta):
-	
+
 	var mouse_direction: Vector2 = (get_global_mouse_position() - global_position).normalized()
 	
 	var direction: Vector2 = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
@@ -77,7 +76,7 @@ func shoot() -> void:
 			if gun_equipped.rounds ==0:
 				reload()
 func change_gun() -> void:
-	if gun_equipped !=null:
+	if gun_equipped:
 		bullet_ui.emit()
 		shootTimer.wait_time = gun_equipped.shooting_speed
 		reloadTimer.wait_time = gun_equipped.reload_speed

@@ -1,0 +1,82 @@
+[gd_scene load_steps=10 format=3 uid="uid://cnau3xvg64qd7"]
+
+[ext_resource type="Script" path="res://Scenes/enemy.gd" id="1_h5jn7"]
+[ext_resource type="Texture2D" uid="uid://bbnr7vwe1vv2u" path="res://Images/AnimationSheet.png" id="2_7tqe2"]
+[ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="2_f3hho"]
+[ext_resource type="Resource" uid="uid://ddnstq1giiay" path="res://Data/Weapons/Revolver.tres" id="2_qmsi5"]
+[ext_resource type="Script" path="res://Scripts/EnemyIdle.gd" id="4_scs68"]
+[ext_resource type="Texture2D" uid="uid://g2ynxnu5x1j0" path="res://Assets/rifle.png" id="4_sxo84"]
+[ext_resource type="Script" path="res://Scripts/EnemyFollow.gd" id="5_gcvdk"]
+[ext_resource type="Script" path="res://Scripts/EnemyAim.gd" id="6_oq770"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mvy6w"]
+
+[node name="Enemy" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_h5jn7")
+range = 600.0
+weapon_equipped = ExtResource("2_qmsi5")
+accuracy = 1.0
+shooting_speed = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.96319, 0.157999, 0.00213835, 1)
+z_index = 2
+texture_filter = 1
+position = Vector2(-1, -12)
+texture = ExtResource("2_7tqe2")
+hframes = 8
+vframes = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_mvy6w")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="WeaponPivot" type="Node2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="GunSprite" type="Sprite2D" parent="WeaponPivot"]
+z_index = 2
+texture_filter = 1
+position = Vector2(6.66, 0.465)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("4_sxo84")
+
+[node name="EndOfGun" type="Node2D" parent="WeaponPivot/GunSprite"]
+position = Vector2(24.75, -11.3)
+scale = Vector2(3.33333, 3.33333)
+
+[node name="GunDirection" type="Node2D" parent="WeaponPivot/GunSprite"]
+position = Vector2(28.911, -11.3)
+scale = Vector2(3.33333, 3.33333)
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_f3hho")
+initial_state = NodePath("EnemyIdle")
+
+[node name="EnemyIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("4_scs68")
+enemy = NodePath("../..")
+
+[node name="EnemyFollow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_gcvdk")
+enemy = NodePath("../..")
+
+[node name="EnemyAim" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("6_oq770")
+enemy = NodePath("../..")
+
+[node name="WaitTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ShootTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ReloadTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="WaitTimer" to="StateMachine/EnemyIdle" method="_on_wait_timer_timeout"]
+[connection signal="timeout" from="ShootTimer" to="StateMachine/EnemyAim" method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="ReloadTimer" to="StateMachine/EnemyAim" method="_on_reload_timer_timeout"]

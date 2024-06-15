@@ -23,12 +23,6 @@ position = Vector2(161, 315)
 [node name="Item" parent="PickUpItem" index="0"]
 item_ID = 5
 
-[node name="PickUpItem3" parent="." instance=ExtResource("4_g78pd")]
-position = Vector2(270, 315)
-
-[node name="Item" parent="PickUpItem3" index="0"]
-item_ID = 5
-
 [node name="PickUpItem2" parent="." instance=ExtResource("4_g78pd")]
 position = Vector2(434, 333)
 
@@ -45,8 +39,7 @@ offset_bottom = -33.0
 [node name="BulletUI" parent="." instance=ExtResource("6_55wgd")]
 
 [node name="Enemy" parent="." instance=ExtResource("7_fp42t")]
-position = Vector2(748, 215)
+position = Vector2(862, 442)
 
 [editable path="PickUpItem"]
-[editable path="PickUpItem3"]
 [editable path="PickUpItem2"]

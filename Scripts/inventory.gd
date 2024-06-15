@@ -181,7 +181,7 @@ func place_item():
 	for z in range(all_weapons.size()):
 		var temp_weapon = load(weapons_path+all_weapons[z])
 		if item_held.item_ID == temp_weapon.item_ID:
-			item_held = temp_weapon
+			item_held = temp_weapon.duplicate()
 	items.append(item_held)
 	item_held = null
 	clear_grid()
