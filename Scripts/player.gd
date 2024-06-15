@@ -86,32 +86,17 @@ func change_gun() -> void:
 		weapon_pivot.rotation = 0
 		EndOfGun.global_position = weapon_sprite.global_position
 		GunDirection.global_position = EndOfGun.global_position
-		if not flipped:
-			EndOfGun.global_position.x += weapon_sprite.texture.get_width()
-			GunDirection.global_position = EndOfGun.global_position
-			GunDirection.global_position.x += 5
-		else:
-			EndOfGun.global_position.x -= weapon_sprite.texture.get_width()
-			GunDirection.global_position = EndOfGun.global_position
-			GunDirection.global_position.x -= 5
+		EndOfGun.global_position.x += 10
+		GunDirection.global_position = EndOfGun.global_position
+		GunDirection.global_position.x += 5
 	else:
 		weapon_sprite.texture = null
 		
 func switch_guns() -> void:
 	var items:Array = Inventory.items
 	var guns_equipped:Array
-	weapons_folder.list_dir_begin()
-	var all_weapons:Array
-	while true:
-		var temp_weapon = weapons_folder.get_next()
-		if temp_weapon == "":
-			break
-		all_weapons.append(temp_weapon)
-	for z in range(all_weapons.size()):
-		for i in range(items.size()):
-			var temp_weapon = load(weapons_path+all_weapons[z])
-			if items[i].item_ID == temp_weapon.item_ID:
-				guns_equipped.append(temp_weapon)
+	for i in range(items.size()):
+		guns_equipped.append(items[i])
 	if guns_equipped.is_empty():
 		return
 	gun_equipped = guns_equipped[weapon_wheel]
@@ -131,16 +116,8 @@ func check_gun() -> void:
 	var guns_equipped:Array
 	weapons_folder.list_dir_begin()
 	var all_weapons:Array
-	while true:
-		var temp_weapon = weapons_folder.get_next()
-		if temp_weapon == "":
-			break
-		all_weapons.append(temp_weapon)
-	for z in range(all_weapons.size()):
-		for i in range(items.size()):
-			var temp_weapon = load(weapons_path+all_weapons[z])
-			if items[i].item_ID == temp_weapon.item_ID:
-				guns_equipped.append(temp_weapon)
+	for i in range(items.size()):
+		guns_equipped.append(items[i])
 	if guns_equipped.is_empty():
 		print("!!!")
 	var is_player_gun_in_inventory = false

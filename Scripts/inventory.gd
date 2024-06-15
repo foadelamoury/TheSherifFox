@@ -168,9 +168,20 @@ func place_item():
 		var grid_to_check = current_slot.slot_ID + grid[0] + grid[1] * col_count
 		grid_array[grid_to_check].state = grid_array[grid_to_check].States.TAKEN 
 		grid_array[grid_to_check].item_stored = item_held
-	
-	#put item into a data storage here
-
+		
+	var weapons_path = "res://Data/Weapons/"
+	var weapons_folder = DirAccess.open(weapons_path)
+	weapons_folder.list_dir_begin()
+	var all_weapons:Array
+	while true:
+		var temp_weapon = weapons_folder.get_next()
+		if temp_weapon == "":
+			break
+		all_weapons.append(temp_weapon)
+	for z in range(all_weapons.size()):
+		var temp_weapon = load(weapons_path+all_weapons[z])
+		if item_held.item_ID == temp_weapon.item_ID:
+			item_held = temp_weapon
 	items.append(item_held)
 	item_held = null
 	clear_grid()
