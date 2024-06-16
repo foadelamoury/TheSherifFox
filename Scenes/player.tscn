@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://g2ynxnu5x1j0" path="res://Assets/rifle.png" id="3_yqpks"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m7466"]
+radius = 9.67
 
 [sub_resource type="Animation" id="Animation_wh0bk"]
 resource_name = "IDLE"
