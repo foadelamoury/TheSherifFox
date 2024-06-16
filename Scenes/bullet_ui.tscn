@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cfvc1fgbr5qcm"]
 
-[ext_resource type="Script" path="res://Scripts/bullet_ui.gd" id="1_8bw08"]
+[ext_resource type="Script" path="res://Scenes/bullet_ui.gd" id="1_3m3ft"]
 [ext_resource type="Texture2D" uid="uid://dh1rxevs7d072" path="res://Images/bulletYellowSilver_outline.png" id="1_10qw2"]
 
 [node name="BulletUI" type="Control"]
@@ -8,7 +8,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 486.0
 offset_bottom = 40.0
-script = ExtResource("1_8bw08")
+script = ExtResource("1_3m3ft")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0

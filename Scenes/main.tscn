@@ -26,6 +26,9 @@ item_ID = 5
 [node name="PickUpItem3" parent="." instance=ExtResource("4_g78pd")]
 position = Vector2(270, 315)
 
+[node name="Item" parent="PickUpItem3" index="0"]
+item_ID = 5
+
 [node name="PickUpItem2" parent="." instance=ExtResource("4_g78pd")]
 position = Vector2(434, 333)
 

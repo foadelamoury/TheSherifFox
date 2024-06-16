@@ -1,22 +1,16 @@
 [gd_scene load_steps=12 format=3 uid="uid://cacmnwuabbpi6"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_i753s"]
-<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://bbnr7vwe1vv2u" path="res://Images/AnimationSheet.png" id="2_ikoqt"]
 [ext_resource type="Texture2D" uid="uid://g2ynxnu5x1j0" path="res://Assets/Rifle.png" id="3_yqpks"]
 [ext_resource type="Script" path="res://Scenes/abilities/player/player_use_ability_component.gd" id="4_416yb"]
 [ext_resource type="Resource" uid="uid://mtr0bpr5d1ng" path="res://Scenes/abilities/player/fire_spin_projectile_ability.tres" id="5_qtxww"]
-=======
-[ext_resource type="Texture2D" uid="uid://o1fssu8tta3" path="res://Images/player_spritesheet.png" id="2_ypxwu"]
-[ext_resource type="Texture2D" uid="uid://g2ynxnu5x1j0" path="res://Assets/rifle.png" id="3_yqpks"]
->>>>>>> master
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m7466"]
-radius = 9.67
 
 [sub_resource type="Animation" id="Animation_wh0bk"]
 resource_name = "IDLE"
-length = 0.2
+length = 1.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -25,10 +19,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [1]
+"values": [0, 1, 0]
 }
 
 [sub_resource type="Animation" id="Animation_mse65"]
@@ -48,7 +42,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_br2fi"]
 resource_name = "RUN"
-length = 0.4
+length = 1.6
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -57,10 +51,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2]
+"values": [12, 13, 14, 15]
 }
 
 [sub_resource type="Animation" id="Animation_tvbql"]
@@ -97,11 +91,10 @@ script = ExtResource("1_i753s")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 2
 texture_filter = 1
-position = Vector2(-1, -9.985)
-scale = Vector2(0.08, 0.08)
-texture = ExtResource("2_ypxwu")
-hframes = 2
-vframes = 2
+position = Vector2(-1, -12)
+texture = ExtResource("2_ikoqt")
+hframes = 8
+vframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
