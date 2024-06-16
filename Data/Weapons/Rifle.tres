@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Weapon" load_steps=4 format=3 uid="uid://dvjobedpgsj7a"]
 
 [ext_resource type="PackedScene" uid="uid://cd846qcsp2gnt" path="res://Scenes/player_bullet.tscn" id="1_0chf1"]
-[ext_resource type="Script" path="res://Scenes/weapon.gd" id="1_lvcvo"]
-[ext_resource type="Texture2D" uid="uid://g2ynxnu5x1j0" path="res://Assets/Rifle.png" id="2_kmj1v"]
+[ext_resource type="Script" path="res://Scripts/weapon.gd" id="1_lvcvo"]
+[ext_resource type="Texture2D" uid="uid://g2ynxnu5x1j0" path="res://Assets/rifle.png" id="2_kmj1v"]
 
 [resource]
 script = ExtResource("1_lvcvo")

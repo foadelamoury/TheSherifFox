@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cnau3xvg64qd7"]
+[gd_scene load_steps=9 format=3 uid="uid://cnau3xvg64qd7"]
 
-[ext_resource type="Script" path="res://Scenes/enemy.gd" id="1_h5jn7"]
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_b21x8"]
 [ext_resource type="Texture2D" uid="uid://bbnr7vwe1vv2u" path="res://Images/AnimationSheet.png" id="2_7tqe2"]
 [ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="2_f3hho"]
-[ext_resource type="Resource" uid="uid://ddnstq1giiay" path="res://Data/Weapons/Revolver.tres" id="2_qmsi5"]
 [ext_resource type="Script" path="res://Scripts/EnemyIdle.gd" id="4_scs68"]
 [ext_resource type="Texture2D" uid="uid://g2ynxnu5x1j0" path="res://Assets/rifle.png" id="4_sxo84"]
 [ext_resource type="Script" path="res://Scripts/EnemyFollow.gd" id="5_gcvdk"]
@@ -13,11 +12,7 @@
 
 [node name="Enemy" type="CharacterBody2D"]
 scale = Vector2(3, 3)
-script = ExtResource("1_h5jn7")
-range = 600.0
-weapon_equipped = ExtResource("2_qmsi5")
-accuracy = 1.0
-shooting_speed = 1.0
+script = ExtResource("1_b21x8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.96319, 0.157999, 0.00213835, 1)
