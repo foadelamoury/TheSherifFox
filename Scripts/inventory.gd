@@ -28,6 +28,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	get_tree().paused = visible
+	
 	if item_held:
 		if Input.is_action_just_pressed("mouse_rightclick"):
 			rotate_item()
@@ -243,10 +245,8 @@ func _unhandled_input(event):
 	if event.is_action_released("ui_focus_next"):
 		if visible:
 			visible = false
-			get_tree().paused = false
 		else:
 			visible = true
-			get_tree().paused = true
 func add_slot():
 	var slots:Array
 	for child in grid_container.get_children():
