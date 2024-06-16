@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://cunr3nov8fkx6"]
 
 [ext_resource type="PackedScene" uid="uid://cgm6b2tpenwep" path="res://Scenes/item.tscn" id="1_jr3h7"]
-[ext_resource type="Script" path="res://Scenes/pick_up_item.gd" id="1_wthxl"]
+[ext_resource type="Script" path="res://Scripts/pick_up_item.gd" id="1_ke4ec"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_arhga"]
 radius = 38.71
 
 [node name="PickUpItem" type="Node2D"]
-script = ExtResource("1_wthxl")
+script = ExtResource("1_ke4ec")
 
 [node name="Item" parent="." instance=ExtResource("1_jr3h7")]
 item_ID = 1

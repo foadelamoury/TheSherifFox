@@ -15,21 +15,23 @@ func render_dungeon(grid: Array[Array]):
 		for cell in row:
 			var color: Color
 			if cell.type == Room.room_type.EMPTY:
-				color = Color(255, 255, 255)
+				color = Color(1, 1, 1)  # White
 			elif cell.type == Room.room_type.START:
-				color = Color(255, 0, 0)
+				color = Color(1, 0, 0)  # Red
 			elif cell.type == Room.room_type.END:
-				color = Color(0, 255, 0)
+				color = Color(0, 1, 0)  # Green
 			elif cell.type == Room.room_type.GENERIC:
-				color = Color(0, 0, 0)
+				color = Color(0, 0, 0)  # Black
+			elif cell.type == Room.room_type.MAIN_BRANCH:
+				color = Color(0, 0, 1)  # Blue
 			img.set_pixel(cellnum, rownum, color)
 			cellnum += 1
 		rownum += 1
-	img.save_png("C:/Users/Fabian/Desktop/gen/dungeon" + str(Time.get_ticks_usec()) + ".png")
+	img.save_png("res://dungeon_" + str(Time.get_ticks_usec()) + ".png")
 
 func make_grid(sizeX: int, sizeY: int) -> Array[Array]:
 	var grid: Array[Array] = []
-	for i in range(sizeY):  # Correct loop limits
+	for i in range(sizeY):
 		var row: Array = []
 		for j in range(sizeX):
 			row.append(Room.new(Room.room_type.EMPTY, []))
@@ -40,7 +42,7 @@ func generate_dungeon(grid: Array[Array], branch_length: int, dead_end_chance: f
 	var _grid: Array[Array] = grid
 	var x_size: int = _grid[0].size()
 	var y_size: int = _grid.size()
-	
+
 	var last_coordinate: Array = [0, 0]
 	var current_coordinate: Array = [floor(float(y_size) / 2.0), 0]
 	var current_x: int = current_coordinate[1]
@@ -98,7 +100,7 @@ func generate_dungeon(grid: Array[Array], branch_length: int, dead_end_chance: f
 					var directions: Array[Array] = get_directions(x_size, y_size, current_x, current_y, _grid)
 					
 					if directions.size() == 0:
-						return -1
+						continue  # Use continue instead of return to skip to the next iteration
 					last_coordinate = [current_y, current_x]
 					current_coordinate = directions[randi_range(0, directions.size() - 1)]
 					current_x = current_coordinate[1]
@@ -136,14 +138,18 @@ func get_directions(max_x: int, max_y: int, x: int, y: int, grid: Array[Array]) 
 	var directions: Array[Array] = []
 
 	# Only set if neighbour is valid
-	if y > 0 and grid[y - 1][x].type == Room.room_type.EMPTY:
-		directions.append([y - 1, x])
-	if y < max_y - 1 and grid[y + 1][x].type == Room.room_type.EMPTY:
-		directions.append([y + 1, x])
-	if x > 0 and grid[y][x - 1].type == Room.room_type.EMPTY:
-		directions.append([y, x - 1])
-	if x < max_x - 1 and grid[y][x + 1].type == Room.room_type.EMPTY:
-		directions.append([y, x + 1])
+	if y > 0: 
+		if grid[y - 1][x].type == Room.room_type.EMPTY:
+			directions.append([y - 1, x])
+	if y < max_y - 1:
+		if grid[y + 1][x].type == Room.room_type.EMPTY:
+			directions.append([y + 1, x])
+	if x > 0: 
+		if grid[y][x - 1].type == Room.room_type.EMPTY:
+			directions.append([y, x - 1])
+	if x < max_x - 1:
+		if grid[y][x + 1].type == Room.room_type.EMPTY:
+			directions.append([y, x + 1])
 
 	return directions
 
