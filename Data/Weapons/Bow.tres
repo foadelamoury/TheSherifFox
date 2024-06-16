@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=4 format=3 uid="uid://53mjo0ws8c1i"]
+
+[ext_resource type="Script" path="res://Scripts/weapon.gd" id="1_8fspv"]
+[ext_resource type="PackedScene" uid="uid://m40qhl5aj6co" path="res://Scenes/player_arrow.tscn" id="1_uhar1"]
+[ext_resource type="Texture2D" uid="uid://cb8iq35r2w2vo" path="res://Assets/bow.png" id="2_v6hki"]
+
+[resource]
+script = ExtResource("1_8fspv")
+item_ID = 1
+name = "Bow"
+clip_size = 1
+bullet_type = ExtResource("1_uhar1")
+icon = ExtResource("2_v6hki")
+Grid = ""
+shooting_speed = 0.4
+reload_speed = 0.5
+rounds = 1
