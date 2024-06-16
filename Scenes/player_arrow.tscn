@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cd846qcsp2gnt"]
+[gd_scene load_steps=7 format=3 uid="uid://x5c4dpiv6j1e"]
 
-[ext_resource type="Script" path="res://Scripts/player_bullet.gd" id="1_b1com"]
-[ext_resource type="Texture2D" uid="uid://swciya2v1e5x" path="res://Assets/arrow.webp" id="2_fpemv"]
+[ext_resource type="Script" path="res://Scripts/player_bullet.gd" id="1_whl1g"]
+[ext_resource type="Texture2D" uid="uid://swciya2v1e5x" path="res://Assets/arrow.webp" id="2_lsd42"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yr5s8"]
 size = Vector2(11.76, 36.775)
@@ -46,7 +46,7 @@ _data = {
 
 [node name="Area2D" type="Area2D"]
 rotation = 0.785398
-script = ExtResource("1_b1com")
+script = ExtResource("1_whl1g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 0.785398
@@ -55,7 +55,7 @@ shape = SubResource("RectangleShape2D_yr5s8")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(0.14, 0.14)
-texture = ExtResource("2_fpemv")
+texture = ExtResource("2_lsd42")
 hframes = 3
 vframes = 3
 

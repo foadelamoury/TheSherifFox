@@ -1,12 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://bi2b4ukanfch2"]
+[gd_scene load_steps=7 format=3 uid="uid://bi2b4ukanfch2"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_tme1b"]
 [ext_resource type="PackedScene" uid="uid://cacmnwuabbpi6" path="res://Scenes/player.tscn" id="2_2c1ls"]
 [ext_resource type="Script" path="res://Scripts/BulletManager.gd" id="3_c6quy"]
+<<<<<<< HEAD
 [ext_resource type="PackedScene" path="res://Scenes/pick_up_item.tscn" id="4_g78pd"]
 [ext_resource type="PackedScene" path="res://Scenes/inventory.tscn" id="5_mboi7"]
 [ext_resource type="PackedScene" path="res://Scenes/bullet_ui.tscn" id="6_55wgd"]
 [ext_resource type="PackedScene" path="res://Scenes/enemy.tscn" id="7_fp42t"]
+=======
+[ext_resource type="PackedScene" uid="uid://cunr3nov8fkx6" path="res://Scenes/pick_up_item.tscn" id="4_g78pd"]
+[ext_resource type="PackedScene" uid="uid://bdq71e34x3qx2" path="res://Scenes/inventory.tscn" id="5_mboi7"]
+[ext_resource type="PackedScene" uid="uid://cfvc1fgbr5qcm" path="res://Scenes/bullet_ui.tscn" id="6_55wgd"]
+>>>>>>> 53de9ae5ddd532e21943e5dc9bac8c78df942234
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_tme1b")
@@ -26,9 +32,6 @@ item_ID = 5
 [node name="PickUpItem3" parent="." instance=ExtResource("4_g78pd")]
 position = Vector2(270, 315)
 
-[node name="Item" parent="PickUpItem3" index="0"]
-item_ID = 5
-
 [node name="PickUpItem2" parent="." instance=ExtResource("4_g78pd")]
 position = Vector2(434, 333)
 
@@ -43,9 +46,6 @@ offset_right = -113.0
 offset_bottom = -33.0
 
 [node name="BulletUI" parent="." instance=ExtResource("6_55wgd")]
-
-[node name="Enemy" parent="." instance=ExtResource("7_fp42t")]
-position = Vector2(748, 215)
 
 [editable path="PickUpItem"]
 [editable path="PickUpItem3"]
