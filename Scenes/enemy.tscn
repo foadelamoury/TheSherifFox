@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="2_f3hho"]
 [ext_resource type="Resource" uid="uid://ddnstq1giiay" path="res://Data/Weapons/Revolver.tres" id="2_qmsi5"]
 [ext_resource type="Script" path="res://Scripts/EnemyIdle.gd" id="4_scs68"]
-[ext_resource type="Texture2D" uid="uid://g2ynxnu5x1j0" path="res://Assets/rifle.png" id="4_sxo84"]
+[ext_resource type="Texture2D" uid="uid://g2ynxnu5x1j0" path="res://Assets/Rifle.png" id="4_sxo84"]
 [ext_resource type="Script" path="res://Scripts/EnemyFollow.gd" id="5_gcvdk"]
 [ext_resource type="Script" path="res://Scripts/EnemyAim.gd" id="6_oq770"]
 
@@ -13,6 +13,8 @@
 
 [node name="Enemy" type="CharacterBody2D"]
 scale = Vector2(3, 3)
+collision_layer = 4
+collision_mask = 32
 script = ExtResource("1_h5jn7")
 range = 600.0
 weapon_equipped = ExtResource("2_qmsi5")

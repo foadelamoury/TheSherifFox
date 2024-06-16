@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsg1ad4j8eyot"]
+
+[ext_resource type="SpriteFrames" uid="uid://c2j06wr7vkbh8" path="res://Assets/Animations/Projectiles/pixel_special_effects_animations.tres" id="1_x6tbs"]
+
+[node name="FireExplosion" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_x6tbs")
+animation = &"Sunburn"
+autoplay = "Sunburn"

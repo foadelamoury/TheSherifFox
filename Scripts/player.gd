@@ -23,7 +23,7 @@ var weapon_wheel:int = 0
 var flipped = false
 var shooting = false
 var reloading = false
-
+var direction: Vector2 = Vector2.ZERO
 func _ready():
 	bullet_ui.emit()
 	change_gun()
@@ -32,7 +32,7 @@ func _physics_process(delta):
 
 	var mouse_direction: Vector2 = (get_global_mouse_position() - global_position).normalized()
 	
-	var direction: Vector2 = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
+	direction = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
 	
 	if direction:
 		velocity = direction * movement_speed
