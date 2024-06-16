@@ -7,5 +7,5 @@ class_name Weapon
 @export var icon:Texture2D
 @export var Grid:String
 @export var shooting_speed:float
-@export var reload_speed:float
+@export var reload_speed:int
 @export var rounds:int

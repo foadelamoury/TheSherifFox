@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://bi2b4ukanfch2"]
+
+[ext_resource type="Script" path="res://Scripts/Main.gd" id="1_tme1b"]
+[ext_resource type="PackedScene" uid="uid://cacmnwuabbpi6" path="res://Scenes/player.tscn" id="2_2c1ls"]
+[ext_resource type="Script" path="res://Scripts/BulletManager.gd" id="3_c6quy"]
+[ext_resource type="PackedScene" path="res://Scenes/pick_up_item.tscn" id="4_g78pd"]
+[ext_resource type="PackedScene" path="res://Scenes/inventory.tscn" id="5_mboi7"]
+[ext_resource type="PackedScene" path="res://Scenes/bullet_ui.tscn" id="6_55wgd"]
+[ext_resource type="PackedScene" path="res://Scenes/enemy.tscn" id="7_fp42t"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_tme1b")
+
+[node name="Player" parent="." instance=ExtResource("2_2c1ls")]
+position = Vector2(283, 123)
+
+[node name="BulletManager" type="Node2D" parent="."]
+script = ExtResource("3_c6quy")
+
+[node name="PickUpItem" parent="." instance=ExtResource("4_g78pd")]
+position = Vector2(161, 315)
+
+[node name="Item" parent="PickUpItem" index="0"]
+item_ID = 5
+
+[node name="PickUpItem3" parent="." instance=ExtResource("4_g78pd")]
+position = Vector2(270, 315)
+
+[node name="Item" parent="PickUpItem3" index="0"]
+item_ID = 5
+
+[node name="PickUpItem2" parent="." instance=ExtResource("4_g78pd")]
+position = Vector2(434, 333)
+
+[node name="Item" parent="PickUpItem2" index="0"]
+item_ID = 6
+
+[node name="Inventory" parent="." instance=ExtResource("5_mboi7")]
+visible = false
+offset_left = -113.0
+offset_top = -33.0
+offset_right = -113.0
+offset_bottom = -33.0
+
+[node name="BulletUI" parent="." instance=ExtResource("6_55wgd")]
+
+[node name="Enemy" parent="." instance=ExtResource("7_fp42t")]
+position = Vector2(748, 215)
+
+[editable path="PickUpItem"]
+[editable path="PickUpItem3"]
+[editable path="PickUpItem2"]
