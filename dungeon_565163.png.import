@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g2ynxnu5x1j0"
-path="res://.godot/imported/Rifle.png-2427ca15257125a0afd74dbff2009312.ctex"
+uid="uid://bliovt0o4c1o2"
+path="res://.godot/imported/dungeon_565163.png-316e8d35c9ab6d49faefb7f509c5f268.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Rifle.png"
-dest_files=["res://.godot/imported/Rifle.png-2427ca15257125a0afd74dbff2009312.ctex"]
+source_file="res://dungeon_565163.png"
+dest_files=["res://.godot/imported/dungeon_565163.png-316e8d35c9ab6d49faefb7f509c5f268.ctex"]
 
 [params]
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_i753s"]
 [ext_resource type="Texture2D" uid="uid://bbnr7vwe1vv2u" path="res://Images/AnimationSheet.png" id="2_ikoqt"]
-[ext_resource type="Texture2D" uid="uid://g2ynxnu5x1j0" path="res://Assets/rifle.png" id="3_yqpks"]
+[ext_resource type="Texture2D" uid="uid://g2ynxnu5x1j0" path="res://Assets/Rifle.png" id="3_yqpks"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m7466"]
 

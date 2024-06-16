@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_tme1b"]
 [ext_resource type="PackedScene" uid="uid://cacmnwuabbpi6" path="res://Scenes/player.tscn" id="2_2c1ls"]
 [ext_resource type="Script" path="res://Scripts/BulletManager.gd" id="3_c6quy"]
-[ext_resource type="PackedScene" uid="uid://cunr3nov8fkx6" path="res://Scenes/pick_up_item.tscn" id="4_g78pd"]
-[ext_resource type="PackedScene" uid="uid://bdq71e34x3qx2" path="res://Scenes/inventory.tscn" id="5_mboi7"]
-[ext_resource type="PackedScene" uid="uid://cfvc1fgbr5qcm" path="res://Scenes/bullet_ui.tscn" id="6_55wgd"]
-[ext_resource type="PackedScene" uid="uid://cnau3xvg64qd7" path="res://Scenes/enemy.tscn" id="7_fp42t"]
+[ext_resource type="PackedScene" path="res://Scenes/pick_up_item.tscn" id="4_g78pd"]
+[ext_resource type="PackedScene" path="res://Scenes/inventory.tscn" id="5_mboi7"]
+[ext_resource type="PackedScene" path="res://Scenes/bullet_ui.tscn" id="6_55wgd"]
+[ext_resource type="PackedScene" path="res://Scenes/enemy.tscn" id="7_fp42t"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_tme1b")
