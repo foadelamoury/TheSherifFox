@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="HealthSignalBus" load_steps=2 format=3 uid="uid://cp1r3g6nfvcae"]
+
+[ext_resource type="Script" path="res://Scenes/health_signal_bus.gd" id="1_gdvv0"]
+
+[resource]
+script = ExtResource("1_gdvv0")

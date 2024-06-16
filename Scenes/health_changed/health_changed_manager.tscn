@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cu7yt54vied0x"]
+
+[ext_resource type="Script" path="res://ui/health_changed/health_changed_manager.gd" id="1_5oam1"]
+[ext_resource type="PackedScene" uid="uid://siary2fioreu" path="res://ui/health_changed/health_changed_label.tscn" id="2_3phs1"]
+
+[node name="HealthChangedManager" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_5oam1")
+health_changed_label = ExtResource("2_3phs1")
+damage_color = Color(0.894118, 0, 0, 1)
+heal_color = Color(0, 0.815686, 0, 1)

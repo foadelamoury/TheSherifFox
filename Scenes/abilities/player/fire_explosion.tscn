@@ -1,10 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://bsg1ad4j8eyot"]
+[gd_scene load_steps=9 format=3 uid="uid://bsg1ad4j8eyot"]
 
+[ext_resource type="Script" path="res://Scenes/abilities/grow_over_time.gd" id="1_nqr0u"]
 [ext_resource type="SpriteFrames" uid="uid://c2j06wr7vkbh8" path="res://Assets/Animations/Projectiles/pixel_special_effects_animations.tres" id="1_x6tbs"]
+[ext_resource type="Script" path="res://Scenes/abilities/area_damage_over_time.gd" id="3_ffum4"]
+[ext_resource type="Script" path="res://Scenes/abilities/remove_after_growth.gd" id="3_jcoxs"]
+
+[sub_resource type="Curve" id="Curve_tdpkc"]
+min_value = 1.0
+max_value = 6.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.532051, 2.6992), 7.30081, 7.30081, 0, 0, Vector2(0.989316, 5.9284), 9.30895, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yq25p"]
+radius = 21.0238
+
+[sub_resource type="Gradient" id="Gradient_hllct"]
+offsets = PackedFloat32Array(0, 0.819444)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uqpyj"]
+gradient = SubResource("Gradient_hllct")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="FireExplosion" type="Node2D"]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="GrowOverTime" type="Node2D" parent="."]
+script = ExtResource("1_nqr0u")
+growth_curve = SubResource("Curve_tdpkc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GrowOverTime"]
 sprite_frames = ExtResource("1_x6tbs")
 animation = &"Sunburn"
 autoplay = "Sunburn"
+
+[node name="HitboxArea" type="Area2D" parent="GrowOverTime" node_paths=PackedStringArray("damage_tick_timer")]
+collision_layer = 32
+collision_mask = 4
+script = ExtResource("3_ffum4")
+damage_tick_timer = NodePath("DamageTickTimer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrowOverTime/HitboxArea"]
+shape = SubResource("CircleShape2D_yq25p")
+
+[node name="DamageTickTimer" type="Timer" parent="GrowOverTime/HitboxArea"]
+wait_time = 0.2
+autostart = true
+
+[node name="PointLight2D" type="PointLight2D" parent="GrowOverTime"]
+color = Color(0.968627, 0.462745, 0.133333, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_uqpyj")
+
+[node name="RemoveAfterGrowth" type="Node" parent="." node_paths=PackedStringArray("grow_over_time", "queue_free_target")]
+script = ExtResource("3_jcoxs")
+grow_over_time = NodePath("../GrowOverTime")
+queue_free_target = NodePath("..")

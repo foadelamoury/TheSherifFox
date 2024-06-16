@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cnau3xvg64qd7"]
+[gd_scene load_steps=12 format=3 uid="uid://cnau3xvg64qd7"]
 
 [ext_resource type="Script" path="res://Scenes/enemy.gd" id="1_h5jn7"]
 [ext_resource type="Texture2D" uid="uid://bbnr7vwe1vv2u" path="res://Images/AnimationSheet.png" id="2_7tqe2"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://g2ynxnu5x1j0" path="res://Assets/Rifle.png" id="4_sxo84"]
 [ext_resource type="Script" path="res://Scripts/EnemyFollow.gd" id="5_gcvdk"]
 [ext_resource type="Script" path="res://Scripts/EnemyAim.gd" id="6_oq770"]
+[ext_resource type="Script" path="res://Scenes/damageable.gd" id="9_mjfgn"]
+[ext_resource type="Resource" uid="uid://cp1r3g6nfvcae" path="res://Scenes/health_signal_bus.tres" id="10_ml72p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mvy6w"]
 
@@ -78,6 +80,10 @@ one_shot = true
 
 [node name="ReloadTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Damageable" type="Node" parent="."]
+script = ExtResource("9_mjfgn")
+health_signal_bus = ExtResource("10_ml72p")
 
 [connection signal="timeout" from="WaitTimer" to="StateMachine/EnemyIdle" method="_on_wait_timer_timeout"]
 [connection signal="timeout" from="ShootTimer" to="StateMachine/EnemyAim" method="_on_shoot_timer_timeout"]
