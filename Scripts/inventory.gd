@@ -243,8 +243,10 @@ func _unhandled_input(event):
 	if event.is_action_released("ui_focus_next"):
 		if visible:
 			visible = false
+			get_tree().paused = false
 		else:
 			visible = true
+			get_tree().paused = true
 func add_slot():
 	var slots:Array
 	for child in grid_container.get_children():
