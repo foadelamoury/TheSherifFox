@@ -16,7 +16,7 @@ func Physics_Update(delta:float):
 	var direction = player.global_position - enemy.global_position
 	
 	if direction.length() > range:
-		if direction.length() > (range + 200):
+		if direction.length() > (range + 500):
 			Transitioned.emit(self,"EnemyIdle")
 		else:
 			enemy.velocity = direction.normalized() * move_speed

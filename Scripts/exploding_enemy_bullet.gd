@@ -7,6 +7,8 @@ extends Node2D
 var bullet_direction = Vector2.ZERO
 var og = false
 @export var explosion_bullets:PackedScene
+
+
 func _physics_process(delta):
 	if not og:
 		og = true

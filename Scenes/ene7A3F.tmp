@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4t1c0et4ocip"]
+
+[ext_resource type="Script" path="res://Scenes/enemy_bullet_Arrow.gd" id="1_bkadn"]
+[ext_resource type="PackedScene" uid="uid://b6ujulqhvn8pl" path="res://Scenes/basic_enemy_bullet.tscn" id="2_kob78"]
+
+[node name="RotatingEnemyBullets" type="Node2D"]
+rotation = 1.5708
+script = ExtResource("1_bkadn")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="BasicEnemyBullet9" parent="." instance=ExtResource("2_kob78")]
+position = Vector2(40, 0)
+
+[node name="BasicEnemyBullet10" parent="." instance=ExtResource("2_kob78")]
+position = Vector2(70, 0)
+
+[node name="BasicEnemyBullet11" parent="." instance=ExtResource("2_kob78")]
+position = Vector2(100, 0)
+
+[node name="BasicEnemyBullet12" parent="." instance=ExtResource("2_kob78")]
+position = Vector2(130, 0)
+
+[node name="BasicEnemyBullet13" parent="." instance=ExtResource("2_kob78")]
+position = Vector2(-40, 0)
+
+[node name="BasicEnemyBullet14" parent="." instance=ExtResource("2_kob78")]
+position = Vector2(-70, 0)
+
+[node name="BasicEnemyBullet15" parent="." instance=ExtResource("2_kob78")]
+position = Vector2(-100, 0)
+
+[node name="BasicEnemyBullet16" parent="." instance=ExtResource("2_kob78")]
+position = Vector2(-130, 0)
+
+[node name="BasicEnemyBullet17" parent="." instance=ExtResource("2_kob78")]
+position = Vector2(0, 40)
+
+[node name="BasicEnemyBullet18" parent="." instance=ExtResource("2_kob78")]
+position = Vector2(0, 70)
+
+[node name="BasicEnemyBullet19" parent="." instance=ExtResource("2_kob78")]
+position = Vector2(0, 100)
+
+[node name="BasicEnemyBullet20" parent="." instance=ExtResource("2_kob78")]
+position = Vector2(0, 130)
+
+[node name="BasicEnemyBullet21" parent="." instance=ExtResource("2_kob78")]
+position = Vector2(0, -40)
+
+[node name="BasicEnemyBullet22" parent="." instance=ExtResource("2_kob78")]
+position = Vector2(0, -70)
+
+[node name="BasicEnemyBullet23" parent="." instance=ExtResource("2_kob78")]
+position = Vector2(0, -100)
+
+[node name="BasicEnemyBullet24" parent="." instance=ExtResource("2_kob78")]
+position = Vector2(0, -130)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

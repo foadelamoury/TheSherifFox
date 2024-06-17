@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1yakuev2ov6r"]
+
+[ext_resource type="Script" path="res://Scripts/enemy_bullet_Arrow.gd" id="1_vo35k"]
+[ext_resource type="PackedScene" uid="uid://b6ujulqhvn8pl" path="res://Scenes/basic_enemy_bullet.tscn" id="2_w4qrt"]
+
+[node name="EnemyBulletArrow" type="Node2D"]
+rotation = 1.5708
+script = ExtResource("1_vo35k")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="BasicEnemyBullet9" parent="." instance=ExtResource("2_w4qrt")]
+position = Vector2(0, -40)
+
+[node name="BasicEnemyBullet10" parent="." instance=ExtResource("2_w4qrt")]
+position = Vector2(40, 40)
+
+[node name="BasicEnemyBullet11" parent="." instance=ExtResource("2_w4qrt")]
+position = Vector2(-40, 40)
+
+[node name="BasicEnemyBullet12" parent="." instance=ExtResource("2_w4qrt")]
+position = Vector2(-20, 0)
+
+[node name="BasicEnemyBullet13" parent="." instance=ExtResource("2_w4qrt")]
+position = Vector2(20, 0)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

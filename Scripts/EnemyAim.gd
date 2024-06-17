@@ -29,7 +29,7 @@ func Physics_Update(delta:float):
 		#shoot
 		if enemy.shootTimer.is_stopped() and enemy.reloadTimer.is_stopped() and enemy.waitTimer.is_stopped():
 			enemy.shootTimer.start()
-		if direction.length() > (range):
+		if direction.length() > (range+300):
 			Transitioned.emit(self,"EnemyFollow")
 
 func _on_shoot_timer_timeout():
