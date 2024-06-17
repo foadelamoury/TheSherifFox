@@ -1,11 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://cacmnwuabbpi6"]
+[gd_scene load_steps=12 format=3 uid="uid://cacmnwuabbpi6"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_i753s"]
 [ext_resource type="Texture2D" uid="uid://bbnr7vwe1vv2u" path="res://Images/AnimationSheet.png" id="2_ikoqt"]
 [ext_resource type="Texture2D" uid="uid://g2ynxnu5x1j0" path="res://Assets/Rifle.png" id="3_yqpks"]
 [ext_resource type="Script" path="res://Scenes/abilities/player/player_use_ability_component.gd" id="4_416yb"]
 [ext_resource type="Resource" uid="uid://mtr0bpr5d1ng" path="res://Scenes/abilities/player/fire_spin_projectile_ability.tres" id="5_qtxww"]
-[ext_resource type="Script" path="res://Scripts/Weapons/gun.gd" id="6_5ff70"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m7466"]
 
@@ -83,8 +82,6 @@ _data = {
 "WALK": SubResource("Animation_tvbql")
 }
 
-[sub_resource type="PackedScene" id="PackedScene_4m1dy"]
-
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 scale = Vector2(3, 3)
 collision_layer = 2
@@ -136,10 +133,6 @@ one_shot = true
 script = ExtResource("4_416yb")
 ability = ExtResource("5_qtxww")
 user = NodePath("..")
-
-[node name="TestShotgun" type="Node2D" parent="."]
-script = ExtResource("6_5ff70")
-bullet = SubResource("PackedScene_4m1dy")
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
