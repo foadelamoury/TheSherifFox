@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_i753s"]
 [ext_resource type="Texture2D" uid="uid://6hfhox6ctaef" path="res://Images/ReFoxWalkSide.png" id="2_5omhb"]
-[ext_resource type="Texture2D" uid="uid://o73mjvukie12" path="res://Assets/Earth Wand.png" id="3_yf6pv"]
+[ext_resource type="Texture2D" uid="uid://c2q8q7qrachut" path="res://Assets/Neophyte Staff.png" id="3_4l2us"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m7466"]
 radius = 5.77
@@ -111,7 +111,7 @@ z_index = 2
 texture_filter = 1
 position = Vector2(7.045, 0.465)
 scale = Vector2(0.305, 0.305)
-texture = ExtResource("3_yf6pv")
+texture = ExtResource("3_4l2us")
 offset = Vector2(1.445, -3.73)
 
 [node name="EndOfGun" type="Node2D" parent="WeaponPivot/GunSprite"]

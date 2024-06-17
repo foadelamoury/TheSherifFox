@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b6ofjwuisgcql"]
 
-[ext_resource type="Script" path="res://Scenes/exploding_enemy_bullet.gd" id="1_43qh4"]
+[ext_resource type="Script" path="res://Scripts/exploding_enemy_bullet.gd" id="1_43qh4"]
 [ext_resource type="Texture2D" uid="uid://u44oivn1i8co" path="res://Images/enemy_projectile_icon.png" id="2_302d4"]
 [ext_resource type="PackedScene" uid="uid://bhx4gny8jb0at" path="res://Scenes/enemy_bullet_explosion.tscn" id="2_fl74c"]
 

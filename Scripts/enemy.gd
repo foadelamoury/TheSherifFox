@@ -1,6 +1,7 @@
 extends CharacterBody2D
 @export var range:float = 250
 @export var weapon_equipped:Weapon
+@export var bullet_type:PackedScene
 @export var accuracy:float = 0.5
 @export var shooting_speed:float = 2
 @export var reload_speed:float = 2
@@ -26,6 +27,7 @@ func _ready():
 	
 	if weapon_equipped:
 		weapon_equipped = weapon_equipped.duplicate()
+		weapon_equipped.bullet_type = bullet_type
 		weapon_sprite.texture = weapon_equipped.icon
 		shootTimer.wait_time = shooting_speed
 		reloadTimer.wait_time = reload_speed
