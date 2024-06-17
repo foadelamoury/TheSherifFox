@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://jh54my7h7h7v"]
+
+[ext_resource type="Script" path="res://Scripts/weapon.gd" id="1_worwr"]
+
+[resource]
+script = ExtResource("1_worwr")
+item_ID = 7
+name = "staff1"
+clip_size = 5
+Grid = ""
+shooting_speed = 1.5
+reload_speed = 4.0
+rounds = 5
