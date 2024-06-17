@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://cacmnwuabbpi6"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_i753s"]
-[ext_resource type="Texture2D" uid="uid://o1fssu8tta3" path="res://Images/player_spritesheet.png" id="2_ypxwu"]
-[ext_resource type="Texture2D" uid="uid://g2ynxnu5x1j0" path="res://Assets/rifle.png" id="3_yqpks"]
+[ext_resource type="Texture2D" uid="uid://6hfhox6ctaef" path="res://Images/ReFoxWalkSide.png" id="2_5omhb"]
+[ext_resource type="Texture2D" uid="uid://o73mjvukie12" path="res://Assets/Earth Wand.png" id="3_yf6pv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m7466"]
-radius = 9.67
+radius = 10.57
 
 [sub_resource type="Animation" id="Animation_wh0bk"]
 resource_name = "IDLE"
@@ -21,7 +21,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1]
+"values": [4]
 }
 
 [sub_resource type="Animation" id="Animation_mse65"]
@@ -89,9 +89,9 @@ script = ExtResource("1_i753s")
 z_index = 2
 texture_filter = 1
 position = Vector2(-1, -9.985)
-scale = Vector2(0.08, 0.08)
-texture = ExtResource("2_ypxwu")
-hframes = 2
+scale = Vector2(0.105, 0.105)
+texture = ExtResource("2_5omhb")
+hframes = 3
 vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -109,9 +109,10 @@ position = Vector2(0, -8)
 [node name="GunSprite" type="Sprite2D" parent="WeaponPivot"]
 z_index = 2
 texture_filter = 1
-position = Vector2(6.66, 0.465)
-scale = Vector2(0.35, 0.35)
-texture = ExtResource("3_yqpks")
+position = Vector2(7.045, 0.465)
+scale = Vector2(0.545, 0.545)
+texture = ExtResource("3_yf6pv")
+offset = Vector2(1.445, -3.73)
 
 [node name="EndOfGun" type="Node2D" parent="WeaponPivot/GunSprite"]
 position = Vector2(24.75, -11.3)

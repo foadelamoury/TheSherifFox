@@ -23,7 +23,7 @@ var weapon_wheel:int = 0
 var flipped = false
 var shooting = false
 var reloading = false
-
+var pickup = false
 func _ready():
 	bullet_ui.emit()
 	change_gun()
@@ -135,3 +135,6 @@ func _on_reload_timer_timeout():
 	if gun_equipped!= null:
 		gun_equipped.rounds = gun_equipped.clip_size
 		bullet_ui.emit()
+
+func damaged():
+	print("player damaged")

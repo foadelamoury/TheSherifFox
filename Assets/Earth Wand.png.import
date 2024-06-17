@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g2ynxnu5x1j0"
-path="res://.godot/imported/rifle.png-394eff8881fe2e0b4ad3b510718b6cbb.ctex"
+uid="uid://o73mjvukie12"
+path="res://.godot/imported/Earth Wand.png-143b94948a166e705170a9632104e9a4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/rifle.png"
-dest_files=["res://.godot/imported/rifle.png-394eff8881fe2e0b4ad3b510718b6cbb.ctex"]
+source_file="res://Assets/Earth Wand.png"
+dest_files=["res://.godot/imported/Earth Wand.png-143b94948a166e705170a9632104e9a4.ctex"]
 
 [params]
 

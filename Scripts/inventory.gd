@@ -28,9 +28,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	get_tree().paused = visible
 	
 	if item_held:
+		Player.pickup = true
 		if Input.is_action_just_pressed("mouse_rightclick"):
 			rotate_item()
 		if Input.is_action_just_pressed("mouse_leftclick"):
@@ -39,6 +39,7 @@ func _process(delta):
 			else:
 				place_pickup()
 	else:
+		Player.pickup= false
 		if Input.is_action_just_pressed("mouse_leftclick"):
 			if scroll_container.get_global_rect().has_point(get_global_mouse_position()):
 				pick_item()	
@@ -186,13 +187,16 @@ func place_item():
 			item_held = temp_weapon.duplicate()
 	items.append(item_held)
 	item_held = null
+	if Player.pickup:
+		Player.pickup = false
 	clear_grid()
-	
 func pick_item():
 	if dragging:
 		return
 	if not current_slot or not current_slot.item_stored: 
 		return
+	if not Player.pickup:
+		Player.pickup = true
 	item_held = current_slot.item_stored
 	item_held.selected = true
 	#move node in the scene tree
@@ -200,7 +204,6 @@ func pick_item():
 	add_child(item_held)
 	item_held.global_position = get_global_mouse_position()
 	####
-	
 	for grid in item_held.item_grids:
 		var grid_to_check = item_held.grid_anchor.slot_ID + grid[0] + grid[1] * col_count # use grid anchor instead of current slot to prevent bug
 		grid_array[grid_to_check].state = grid_array[grid_to_check].States.FREE 
@@ -220,6 +223,8 @@ func place_pickup():
 	item_held.get_parent().remove_child(item_held)
 	items.erase(item_held)
 	item_held = null
+	if Player.pickup:
+		Player.pickup = false
 	Player.check_gun()
 func pickup_at_player():
 	var new_pickup = PickUpItem.instantiate()
@@ -243,6 +248,7 @@ func _on_add_slot_pressed():
 	remove_slot()
 func _unhandled_input(event):
 	if event.is_action_released("ui_focus_next"):
+		#get_tree().paused = visible
 		if visible:
 			visible = false
 		else:

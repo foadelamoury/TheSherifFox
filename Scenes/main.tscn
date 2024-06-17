@@ -21,7 +21,7 @@ script = ExtResource("3_c6quy")
 position = Vector2(161, 315)
 
 [node name="Item" parent="PickUpItem" index="0"]
-item_ID = 5
+item_ID = 2
 
 [node name="PickUpItem3" parent="." instance=ExtResource("4_g78pd")]
 position = Vector2(270, 315)
@@ -45,5 +45,8 @@ offset_bottom = -33.0
 position = Vector2(748, 215)
 
 [editable path="PickUpItem"]
+[editable path="PickUpItem/Item"]
 [editable path="PickUpItem3"]
+[editable path="PickUpItem3/Item"]
 [editable path="PickUpItem2"]
+[editable path="PickUpItem2/Item"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g2ynxnu5x1j0"
-path="res://.godot/imported/rifle.png-394eff8881fe2e0b4ad3b510718b6cbb.ctex"
+uid="uid://6hfhox6ctaef"
+path="res://.godot/imported/ReFoxWalkSide.png-b75317b40e0e43bc0079cf952cb2a81e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/rifle.png"
-dest_files=["res://.godot/imported/rifle.png-394eff8881fe2e0b4ad3b510718b6cbb.ctex"]
+source_file="res://Images/ReFoxWalkSide.png"
+dest_files=["res://.godot/imported/ReFoxWalkSide.png-b75317b40e0e43bc0079cf952cb2a81e.ctex"]
 
 [params]
 

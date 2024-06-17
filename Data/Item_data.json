@@ -5,9 +5,9 @@
 	"Grid": "0,0/0,1"
   },
   "2": {
-	"Name": "Item2",
+	"Name": "Earth Wand",
 	"Value": 20,
-	"Grid": "0,0/0,1"
+	"Grid": "0,0/1,0"
   },
   "3": {
 	"Name": "Item3",

@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/slot.gd" id="2_pelkb"]
 
 [node name="Slot" type="TextureRect" groups=["Slot"]]
+process_mode = 3
 custom_minimum_size = Vector2(50, 50)
 offset_right = 50.0
 offset_bottom = 50.0

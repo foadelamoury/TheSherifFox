@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/pick_up_item.gd" id="1_ke4ec"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_arhga"]
-radius = 38.71
+radius = 45.0
 
 [node name="PickUpItem" type="Node2D"]
 script = ExtResource("1_ke4ec")
@@ -13,6 +13,7 @@ script = ExtResource("1_ke4ec")
 item_ID = 1
 
 [node name="Area2D" type="Area2D" parent="."]
+z_index = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_arhga")

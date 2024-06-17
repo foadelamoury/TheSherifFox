@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g2ynxnu5x1j0"
-path="res://.godot/imported/rifle.png-394eff8881fe2e0b4ad3b510718b6cbb.ctex"
+uid="uid://dju3ssbt87uc2"
+path="res://.godot/imported/skeleton spritesheet calciumtrice.png-3096395e633d8c9b57bec7df43d0dde3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/rifle.png"
-dest_files=["res://.godot/imported/rifle.png-394eff8881fe2e0b4ad3b510718b6cbb.ctex"]
+source_file="res://Images/skeleton spritesheet calciumtrice.png"
+dest_files=["res://.godot/imported/skeleton spritesheet calciumtrice.png-3096395e633d8c9b57bec7df43d0dde3.ctex"]
 
 [params]
 
