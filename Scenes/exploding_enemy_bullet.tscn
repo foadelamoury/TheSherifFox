@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6ofjwuisgcql"]
+
+[ext_resource type="Script" path="res://Scenes/exploding_enemy_bullet.gd" id="1_43qh4"]
+[ext_resource type="Texture2D" uid="uid://u44oivn1i8co" path="res://Images/enemy_projectile_icon.png" id="2_302d4"]
+[ext_resource type="PackedScene" uid="uid://bhx4gny8jb0at" path="res://Scenes/enemy_bullet_explosion.tscn" id="2_fl74c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3wrp1"]
+radius = 20.0
+
+[node name="ExplodingEnemyBullet" type="Area2D"]
+script = ExtResource("1_43qh4")
+explosion_bullets = ExtResource("2_fl74c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3wrp1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2.42, 2.42)
+texture = ExtResource("2_302d4")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhx4gny8jb0at"]
+
+[ext_resource type="Script" path="res://Scenes/enemy_bullet_explosion.gd" id="1_h6tvl"]
+[ext_resource type="PackedScene" uid="uid://b6ujulqhvn8pl" path="res://Scenes/basic_enemy_bullet.tscn" id="2_3406e"]
+
+[node name="ExplodingEnemyBullet" type="Node2D"]
+script = ExtResource("1_h6tvl")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+autostart = true
+
+[node name="BasicEnemyBullet" parent="." instance=ExtResource("2_3406e")]
+position = Vector2(0, 10)
+
+[node name="BasicEnemyBullet2" parent="." instance=ExtResource("2_3406e")]
+position = Vector2(0, -10)
+
+[node name="BasicEnemyBullet3" parent="." instance=ExtResource("2_3406e")]
+position = Vector2(10, 0)
+
+[node name="BasicEnemyBullet4" parent="." instance=ExtResource("2_3406e")]
+position = Vector2(-10, 0)
+
+[node name="BasicEnemyBullet5" parent="." instance=ExtResource("2_3406e")]
+position = Vector2(10, 10)
+
+[node name="BasicEnemyBullet6" parent="." instance=ExtResource("2_3406e")]
+position = Vector2(-10, 10)
+
+[node name="BasicEnemyBullet7" parent="." instance=ExtResource("2_3406e")]
+position = Vector2(-10, -10)
+
+[node name="BasicEnemyBullet8" parent="." instance=ExtResource("2_3406e")]
+position = Vector2(10, -10)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

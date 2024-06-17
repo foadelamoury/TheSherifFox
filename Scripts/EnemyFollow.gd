@@ -14,13 +14,12 @@ func Update(delta: float):
 		
 func Physics_Update(delta:float):
 	var direction = player.global_position - enemy.global_position
+	
 	if direction.length() > range:
 		if direction.length() > (range + 200):
 			Transitioned.emit(self,"EnemyIdle")
 		else:
 			enemy.velocity = direction.normalized() * move_speed
-			
-			
 			if enemy.velocity.x <0:
 				enemy.sprite_2d.flip_h = true
 			if enemy.velocity.x <0:

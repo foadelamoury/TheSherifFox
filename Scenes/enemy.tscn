@@ -99,6 +99,7 @@ _data = {
 scale = Vector2(3, 3)
 motion_mode = 1
 script = ExtResource("1_b21x8")
+range = 1200.0
 weapon_equipped = ExtResource("2_4a8bd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

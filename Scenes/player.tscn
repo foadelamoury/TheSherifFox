@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://o73mjvukie12" path="res://Assets/Earth Wand.png" id="3_yf6pv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m7466"]
-radius = 10.57
+radius = 5.77
 
 [sub_resource type="Animation" id="Animation_wh0bk"]
 resource_name = "IDLE"
@@ -110,7 +110,7 @@ position = Vector2(0, -8)
 z_index = 2
 texture_filter = 1
 position = Vector2(7.045, 0.465)
-scale = Vector2(0.545, 0.545)
+scale = Vector2(0.305, 0.305)
 texture = ExtResource("3_yf6pv")
 offset = Vector2(1.445, -3.73)
 
