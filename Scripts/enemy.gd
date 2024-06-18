@@ -56,6 +56,6 @@ func die():
 	var icon:TextureRect = new_pickup.get_child(0).get_child(0)
 	item.item_ID = weapon_equipped.item_ID
 	#icon.expand_mode = TextureRect.EXPAND_KEEP_SIZE
-	get_tree().get_root().add_child(new_pickup)
-	new_pickup.global_position = global_position+ Vector2(randf_range(0,3),randf_range(0,3))
+	get_tree().get_root().call_deferred("add_child", new_pickup)
+	new_pickup.global_position = global_position + Vector2(randf_range(0,3),randf_range(0,3))
 	queue_free()

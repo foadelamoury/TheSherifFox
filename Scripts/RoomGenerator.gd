@@ -1,9 +1,9 @@
 extends Node
 
-@export var rooms: Array[PackedScene]
-
 var x: int = 4
 var y: int = 4
+
+signal generation_finished(grid: Array[Array])
 
 func render_dungeon(grid: Array[Array]):
 	var x: int = grid[0].size()
@@ -155,14 +155,15 @@ func get_directions(max_x: int, max_y: int, x: int, y: int, grid: Array[Array]) 
 
 func _ready():
 	var generation_done: bool = false
+	# This has to be Variant due to some weird error
 	var grid: Variant
 	while not generation_done:
 		grid = make_grid(x, y)
 		grid = generate_dungeon(grid, 5, 0.75, 3)
 		if grid is Array[Array]:
 			generation_done = true
-	print(grid)
-	render_dungeon(grid)
+	print("GEN004 | Room Generation OK")
+	generation_finished.emit(grid)
 
 func _process(delta):
 	pass

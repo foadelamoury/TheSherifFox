@@ -1,6 +1,34 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbfoan4dxnigf"]
+[gd_scene load_steps=19 format=3 uid="uid://bbfoan4dxnigf"]
 
 [ext_resource type="Script" path="res://Scripts/RoomGenerator.gd" id="1_s38h8"]
+[ext_resource type="PackedScene" uid="uid://1n1qvtpa6vvo" path="res://Scenes/room_spawner.tscn" id="2_js5le"]
+[ext_resource type="PackedScene" uid="uid://d2711uewjpi56" path="res://Scenes/Rooms/Generic/0.tscn" id="3_ilsdv"]
+[ext_resource type="PackedScene" uid="uid://drno1ttfebtwm" path="res://Scenes/Rooms/Generic/1.tscn" id="4_ggu45"]
+[ext_resource type="PackedScene" uid="uid://blurbqqh74stb" path="res://Scenes/Rooms/Generic/2.tscn" id="5_7eaib"]
+[ext_resource type="PackedScene" uid="uid://4r2cdjv0pr45" path="res://Scenes/Rooms/Generic/3.tscn" id="6_uoxek"]
+[ext_resource type="PackedScene" uid="uid://d0fse6u1qfg45" path="res://Scenes/Rooms/Generic/4.tscn" id="7_suf27"]
+[ext_resource type="PackedScene" uid="uid://cru2qo2lf8v0f" path="res://Scenes/Rooms/Generic/5.tscn" id="8_08eok"]
+[ext_resource type="PackedScene" uid="uid://jgt76gyjlfui" path="res://Scenes/Rooms/Generic/6.tscn" id="9_ctkqe"]
+[ext_resource type="PackedScene" uid="uid://b2eufuowr7ym1" path="res://Scenes/Rooms/Generic/7.tscn" id="10_1ps6f"]
+[ext_resource type="PackedScene" uid="uid://dxnlm1u6gjtpk" path="res://Scenes/Rooms/Generic/8.tscn" id="11_klkg4"]
+[ext_resource type="PackedScene" uid="uid://ck7xt2thg0vsd" path="res://Scenes/Rooms/Generic/9.tscn" id="12_hcgye"]
+[ext_resource type="PackedScene" uid="uid://clbjuebvnev52" path="res://Scenes/Rooms/Generic/10.tscn" id="13_f75i5"]
+[ext_resource type="PackedScene" uid="uid://bqik3rvvc60yh" path="res://Scenes/Rooms/Generic/11.tscn" id="14_mr00v"]
+[ext_resource type="PackedScene" uid="uid://lqh51m6b76h1" path="res://Scenes/Rooms/Generic/12.tscn" id="15_l3lrx"]
+[ext_resource type="PackedScene" uid="uid://cow5u1gmilsko" path="res://Scenes/Rooms/Generic/13.tscn" id="16_1nif7"]
+[ext_resource type="PackedScene" uid="uid://dw3yqj6vcvqqr" path="res://Scenes/Rooms/Generic/14.tscn" id="17_nrjtp"]
+[ext_resource type="PackedScene" uid="uid://cfby7qn2u644v" path="res://Scenes/Rooms/Generic/15.tscn" id="18_xsovh"]
 
 [node name="WorldGeneration" type="Node2D"]
 script = ExtResource("1_s38h8")
+
+[node name="RoomSpawner" parent="." instance=ExtResource("2_js5le")]
+rooms = Array[PackedScene]([ExtResource("3_ilsdv"), ExtResource("4_ggu45"), ExtResource("5_7eaib"), ExtResource("6_uoxek"), ExtResource("7_suf27"), ExtResource("8_08eok"), ExtResource("9_ctkqe"), ExtResource("10_1ps6f"), ExtResource("11_klkg4"), ExtResource("12_hcgye"), ExtResource("13_f75i5"), ExtResource("14_mr00v"), ExtResource("15_l3lrx"), ExtResource("16_1nif7"), ExtResource("17_nrjtp"), ExtResource("18_xsovh")])
+tile_size = Vector2i(32, 32)
+room_size = Vector2i(16, 16)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1152, 648)
+zoom = Vector2(0.2, 0.2)
+
+[connection signal="generation_finished" from="." to="RoomSpawner" method="spawn_dungeon"]

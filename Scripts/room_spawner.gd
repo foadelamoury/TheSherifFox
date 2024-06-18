@@ -1,11 +1,10 @@
 extends Node2D
 
-# Preload room scenes
-@export var ROOM_SCENES: Array[Array]
+@export var rooms: Array[PackedScene]
+@export var tile_size: Vector2i
+@export var room_size: Vector2i
 
-# This function spawns the dungeon based on the generated array
 func spawn_dungeon(dungeon: Array):
-	var room_size = Vector2(64, 64)  # Adjust based on your room size
 
 	for y in range(dungeon.size()):
 		for x in range(dungeon[y].size()):
@@ -25,8 +24,9 @@ func spawn_dungeon(dungeon: Array):
 			# The direction value is stored in a bitwise binary format
 			# This means: N = 1, E = 2, NE = ..., S, SN, SE, SEN, W, WN, WE, WEN, WS, WSN, WSE = ..., WSEN = 15
 			# Yes, we have to make each room by hand 15 times
-			var room_scene = ROOM_SCENES[room.type][dirval].instance()
-
-			room_scene.position = Vector2(x, y) * room_size
-
-			add_child(room_scene)
+			
+			if room.type != Room.room_type.EMPTY:
+				#var room_scene = load(rooms[dirval + room.type * 16].resource_path).instantiate()
+				var room_scene = load(rooms[dirval].resource_path).instantiate()
+				room_scene.position = Vector2i(x, y) * room_size * tile_size
+				add_child(room_scene)

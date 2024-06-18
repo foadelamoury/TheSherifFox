@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g2ynxnu5x1j0"
-path="res://.godot/imported/Rifle.png-2427ca15257125a0afd74dbff2009312.ctex"
+uid="uid://b6vhtj47hboa8"
+path="res://.godot/imported/Tiles01.png-2e021a53c677fda1b518d465bb5ac9b8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Rifle.png"
-dest_files=["res://.godot/imported/Rifle.png-2427ca15257125a0afd74dbff2009312.ctex"]
+source_file="res://Data/RoomGen/Tiles01.png"
+dest_files=["res://.godot/imported/Tiles01.png-2e021a53c677fda1b518d465bb5ac9b8.ctex"]
 
 [params]
 
