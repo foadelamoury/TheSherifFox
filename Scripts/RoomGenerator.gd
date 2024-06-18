@@ -1,7 +1,7 @@
 extends Node
 
-var x: int = 4
-var y: int = 4
+var x: int = 6
+var y: int = 6
 
 signal generation_finished(grid: Array[Array])
 
@@ -44,7 +44,7 @@ func generate_dungeon(grid: Array[Array], branch_length: int, dead_end_chance: f
 	var y_size: int = _grid.size()
 
 	var last_coordinate: Array = [0, 0]
-	var current_coordinate: Array = [floor(float(y_size) / 2.0), 0]
+	var current_coordinate: Array = [floor(float(y_size) / 2.0), floor(float(x_size) / 2.0)]
 	var current_x: int = current_coordinate[1]
 	var current_y: int = current_coordinate[0]
 
@@ -80,7 +80,8 @@ func generate_dungeon(grid: Array[Array], branch_length: int, dead_end_chance: f
 				inverse_room_dir = Room.direction.WEST
 
 			print("GEN001 | (" + str(current_x) + ", " + str(current_y) + ") with direction " + str(inverse_room_dir) + " invoked (" + str(last_coordinate[1]) + ", " + str(last_coordinate[0]) + ") to have direction " + str(room_dir).replace("0", "N").replace("1", "E").replace("2", "S").replace("3", "W"))
-
+			
+			
 			_grid[last_coordinate[0]][last_coordinate[1]].directions.append(room_dir)
 			_grid[current_y][current_x] = Room.new(Room.room_type.END, []) if i == branch_length - 1 else Room.new(Room.room_type.MAIN_BRANCH, [inverse_room_dir])
 		else:
@@ -129,9 +130,9 @@ func generate_dungeon(grid: Array[Array], branch_length: int, dead_end_chance: f
 
 					_grid[last_coordinate[0]][last_coordinate[1]].directions.append(room_dir)
 					_grid[current_y][current_x] = Room.new(Room.room_type.GENERIC, [inverse_room_dir])
+					generation_finished.emit(_grid)
 			current_x += 1
 		current_y += 1
-
 	return _grid
 
 func get_directions(max_x: int, max_y: int, x: int, y: int, grid: Array[Array]) -> Array[Array]:
@@ -153,17 +154,16 @@ func get_directions(max_x: int, max_y: int, x: int, y: int, grid: Array[Array]) 
 
 	return directions
 
-func _ready():
+func generate():
 	var generation_done: bool = false
 	# This has to be Variant due to some weird error
 	var grid: Variant
 	while not generation_done:
 		grid = make_grid(x, y)
-		grid = generate_dungeon(grid, 5, 0.75, 3)
+		grid = generate_dungeon(grid, 5, 0.25, 3)
 		if grid is Array[Array]:
 			generation_done = true
 	print("GEN004 | Room Generation OK")
-	generation_finished.emit(grid)
 
 func _process(delta):
 	pass

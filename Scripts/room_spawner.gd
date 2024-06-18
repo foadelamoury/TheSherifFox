@@ -5,7 +5,10 @@ extends Node2D
 @export var room_size: Vector2i
 
 func spawn_dungeon(dungeon: Array):
-
+	
+	for child in get_children():
+		child.queue_free()
+	
 	for y in range(dungeon.size()):
 		for x in range(dungeon[y].size()):
 			var room: Room = dungeon[y][x]

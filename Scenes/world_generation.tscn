@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bbfoan4dxnigf"]
+[gd_scene load_steps=21 format=3 uid="uid://bbfoan4dxnigf"]
 
 [ext_resource type="Script" path="res://Scripts/RoomGenerator.gd" id="1_s38h8"]
 [ext_resource type="PackedScene" uid="uid://1n1qvtpa6vvo" path="res://Scenes/room_spawner.tscn" id="2_js5le"]
@@ -18,6 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://cow5u1gmilsko" path="res://Scenes/Rooms/Generic/13.tscn" id="16_1nif7"]
 [ext_resource type="PackedScene" uid="uid://dw3yqj6vcvqqr" path="res://Scenes/Rooms/Generic/14.tscn" id="17_nrjtp"]
 [ext_resource type="PackedScene" uid="uid://cfby7qn2u644v" path="res://Scenes/Rooms/Generic/15.tscn" id="18_xsovh"]
+[ext_resource type="PackedScene" uid="uid://cacmnwuabbpi6" path="res://Scenes/player.tscn" id="19_fm081"]
+
+[sub_resource type="Theme" id="Theme_ki2xi"]
 
 [node name="WorldGeneration" type="Node2D"]
 script = ExtResource("1_s38h8")
@@ -27,8 +30,21 @@ rooms = Array[PackedScene]([ExtResource("3_ilsdv"), ExtResource("4_ggu45"), ExtR
 tile_size = Vector2i(32, 32)
 room_size = Vector2i(16, 16)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1152, 648)
-zoom = Vector2(0.2, 0.2)
+[node name="GenerateButton" type="Button" parent="."]
+offset_left = 1810.0
+offset_top = 1103.0
+offset_right = 2813.0
+offset_bottom = 1360.0
+theme = SubResource("Theme_ki2xi")
+theme_override_font_sizes/font_size = 182
+text = "Generate"
+
+[node name="Player" parent="." instance=ExtResource("19_fm081")]
+position = Vector2(2122, 1210)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+scale = Vector2(0.333333, 0.333333)
+zoom = Vector2(0.5, 0.5)
 
 [connection signal="generation_finished" from="." to="RoomSpawner" method="spawn_dungeon"]
+[connection signal="pressed" from="GenerateButton" to="." method="generate"]
