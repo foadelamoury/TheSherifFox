@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://1n1qvtpa6vvo"]
+[gd_scene load_steps=3 format=3 uid="uid://1n1qvtpa6vvo"]
 
 [ext_resource type="Script" path="res://Scripts/room_spawner.gd" id="1_qohn8"]
+[ext_resource type="PackedScene" uid="uid://drno1ttfebtwm" path="res://Scenes/Rooms/Generic/1.tscn" id="2_qljdc"]
 
 [node name="RoomSpawner" type="Node2D"]
 script = ExtResource("1_qohn8")
+rooms = Array[PackedScene]([ExtResource("2_qljdc")])

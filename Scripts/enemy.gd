@@ -5,9 +5,11 @@ extends CharacterBody2D
 @export var accuracy:float = 0.5
 @export var shooting_speed:float = 2
 @export var reload_speed:float = 2
+@onready var HealthBarUI:ProgressBar = $Control/ProgressBar
 @export var health = 3:
 	set(value):
 		health = value
+		HealthBarUI.value = health
 		if health == 0:
 			die()
 #short range 200

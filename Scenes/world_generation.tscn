@@ -41,10 +41,11 @@ text = "Generate"
 
 [node name="Player" parent="." instance=ExtResource("19_fm081")]
 position = Vector2(2122, 1210)
+scale = Vector2(1, 1)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-scale = Vector2(0.333333, 0.333333)
-zoom = Vector2(0.5, 0.5)
+scale = Vector2(5, 5)
+zoom = Vector2(0.3, 0.3)
 
 [connection signal="generation_finished" from="." to="RoomSpawner" method="spawn_dungeon"]
 [connection signal="pressed" from="GenerateButton" to="." method="generate"]
