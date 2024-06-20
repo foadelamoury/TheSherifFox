@@ -3,7 +3,10 @@ extends Node2D
 @export var rooms: Array[PackedScene]
 @export var tile_size: Vector2i
 @export var room_size: Vector2i
-
+var first_room
+var room_int = 0
+@onready var Player = get_tree().get_first_node_in_group("Player")
+@onready var WorldGen = get_tree().get_first_node_in_group("WorldGen")
 func spawn_dungeon(dungeon: Array):
 	
 	for child in get_children():
@@ -12,7 +15,7 @@ func spawn_dungeon(dungeon: Array):
 	for y in range(dungeon.size()):
 		for x in range(dungeon[y].size()):
 			var room: Room = dungeon[y][x]
-			
+
 			var dirval = 0
 			for direction in room.directions:
 				if direction == Room.direction.NORTH:
@@ -30,6 +33,15 @@ func spawn_dungeon(dungeon: Array):
 			
 			if room.type != Room.room_type.EMPTY:
 				#var room_scene = load(rooms[dirval + room.type * 16].resource_path).instantiate()
+				
 				var room_scene = load(rooms[dirval].resource_path).instantiate()
 				room_scene.position = Vector2i(x, y) * room_size * tile_size
 				add_child(room_scene)
+				WorldGen.generation_done = true
+				room_int +=1
+				if room_int == 1:
+					if room_scene.is_in_group("BossRoom"):
+						print("Boss")
+						room_int = 0
+					else:
+						Player.global_position = room_scene.global_position

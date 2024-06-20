@@ -2,9 +2,11 @@ extends Node
 
 var x: int = 6
 var y: int = 6
-
+var generateComplete:bool = false
 signal generation_finished(grid: Array[Array])
-
+var generation_done: bool = false
+func _ready():
+	generate()
 func render_dungeon(grid: Array[Array]):
 	var x: int = grid[0].size()
 	var y: int = grid.size()
@@ -96,7 +98,7 @@ func generate_dungeon(grid: Array[Array], branch_length: int, dead_end_chance: f
 		current_x = 0
 		for room: Room in row:
 			if room.type == Room.room_type.MAIN_BRANCH or room.type == Room.room_type.START:
-				if randf() <= dead_end_chance and dead_end_count < dead_end_max:
+				if randf() <= dead_end_chance and dead_end_count <= dead_end_max:
 					dead_end_count += 1
 					var directions: Array[Array] = get_directions(x_size, y_size, current_x, current_y, _grid)
 					
@@ -155,14 +157,13 @@ func get_directions(max_x: int, max_y: int, x: int, y: int, grid: Array[Array]) 
 	return directions
 
 func generate():
-	var generation_done: bool = false
 	# This has to be Variant due to some weird error
 	var grid: Variant
 	while not generation_done:
 		grid = make_grid(x, y)
-		grid = generate_dungeon(grid, 6, 0.1, 3)
-		if grid is Array[Array]:
-			generation_done = true
+		grid = generate_dungeon(grid, 6, 0.25, 0)
+		#if grid is Array[Array]:
+		#	generation_done = true
 	print("GEN004 | Room Generation OK")
 
 func _process(delta):

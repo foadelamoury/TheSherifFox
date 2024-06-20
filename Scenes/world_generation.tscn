@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bbfoan4dxnigf"]
+[gd_scene load_steps=22 format=3 uid="uid://bbfoan4dxnigf"]
 
 [ext_resource type="Script" path="res://Scripts/RoomGenerator.gd" id="1_s38h8"]
 [ext_resource type="PackedScene" uid="uid://1n1qvtpa6vvo" path="res://Scenes/room_spawner.tscn" id="2_js5le"]
@@ -19,10 +19,11 @@
 [ext_resource type="PackedScene" uid="uid://dw3yqj6vcvqqr" path="res://Scenes/Rooms/Generic/14.tscn" id="17_nrjtp"]
 [ext_resource type="PackedScene" uid="uid://cfby7qn2u644v" path="res://Scenes/Rooms/Generic/15.tscn" id="18_xsovh"]
 [ext_resource type="PackedScene" uid="uid://cacmnwuabbpi6" path="res://Scenes/player.tscn" id="19_fm081"]
+[ext_resource type="PackedScene" uid="uid://bdq71e34x3qx2" path="res://Scenes/inventory.tscn" id="20_0v6ah"]
 
 [sub_resource type="Theme" id="Theme_ki2xi"]
 
-[node name="WorldGeneration" type="Node2D"]
+[node name="WorldGeneration" type="Node2D" groups=["WorldGen"]]
 script = ExtResource("1_s38h8")
 
 [node name="RoomSpawner" parent="." instance=ExtResource("2_js5le")]
@@ -31,6 +32,7 @@ tile_size = Vector2i(32, 32)
 room_size = Vector2i(16, 16)
 
 [node name="GenerateButton" type="Button" parent="."]
+visible = false
 offset_left = 1810.0
 offset_top = 1103.0
 offset_right = 2813.0
@@ -40,12 +42,19 @@ theme_override_font_sizes/font_size = 182
 text = "Generate"
 
 [node name="Player" parent="." instance=ExtResource("19_fm081")]
-position = Vector2(2122, 1210)
+position = Vector2(2000, 1000)
 scale = Vector2(1, 1)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 scale = Vector2(5, 5)
-zoom = Vector2(0.3, 0.3)
+zoom = Vector2(3, 3)
+
+[node name="Inventory" parent="Player" instance=ExtResource("20_0v6ah")]
+offset_left = -226.185
+offset_top = -116.305
+offset_right = -226.185
+offset_bottom = -116.305
+scale = Vector2(0.32, 0.32)
 
 [connection signal="generation_finished" from="." to="RoomSpawner" method="spawn_dungeon"]
 [connection signal="pressed" from="GenerateButton" to="." method="generate"]
