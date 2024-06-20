@@ -9,7 +9,6 @@ custom_minimum_size = Vector2(50, 50)
 offset_right = 50.0
 offset_bottom = 50.0
 texture = ExtResource("1_mhoni")
-expand_mode = 1
 script = ExtResource("2_pelkb")
 
 [node name="StatusFilter" type="ColorRect" parent="."]

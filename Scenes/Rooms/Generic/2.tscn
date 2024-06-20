@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://blurbqqh74stb"]
+[gd_scene load_steps=3 format=3 uid="uid://blurbqqh74stb"]
 
 [ext_resource type="TileSet" uid="uid://cb7v4ddxb71kk" path="res://Data/RoomGen/tile_set.tres" id="1_bi1hv"]
+[ext_resource type="PackedScene" uid="uid://cunr3nov8fkx6" path="res://Scenes/pick_up_item.tscn" id="2_kkmng"]
 
 [node name="Generic00" type="TileMap"]
 tile_set = ExtResource("1_bi1hv")
@@ -13,3 +14,5 @@ layer_1/tile_data = PackedInt32Array(-458757, 0, 2, -458758, 0, 2, -458759, 0, 2
 layer_2/name = "top"
 layer_2/z_index = 1
 layer_2/tile_data = PackedInt32Array()
+
+[node name="PickUpItem" parent="." instance=ExtResource("2_kkmng")]

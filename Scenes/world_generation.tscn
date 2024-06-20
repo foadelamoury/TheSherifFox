@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bbfoan4dxnigf"]
+[gd_scene load_steps=26 format=3 uid="uid://bbfoan4dxnigf"]
 
 [ext_resource type="Script" path="res://Scripts/RoomGenerator.gd" id="1_s38h8"]
 [ext_resource type="PackedScene" uid="uid://1n1qvtpa6vvo" path="res://Scenes/room_spawner.tscn" id="2_js5le"]
@@ -21,6 +21,8 @@
 [ext_resource type="PackedScene" uid="uid://cfby7qn2u644v" path="res://Scenes/Rooms/Generic/15.tscn" id="18_xsovh"]
 [ext_resource type="PackedScene" uid="uid://cacmnwuabbpi6" path="res://Scenes/player.tscn" id="19_fm081"]
 [ext_resource type="PackedScene" uid="uid://bdq71e34x3qx2" path="res://Scenes/inventory.tscn" id="20_0v6ah"]
+[ext_resource type="PackedScene" uid="uid://cfvc1fgbr5qcm" path="res://Scenes/bullet_ui.tscn" id="22_iqovx"]
+[ext_resource type="Script" path="res://Scripts/BulletManager.gd" id="23_e3ndg"]
 
 [sub_resource type="Theme" id="Theme_ki2xi"]
 
@@ -49,15 +51,16 @@ position = Vector2(2000, 1000)
 scale = Vector2(1, 1)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-scale = Vector2(5, 5)
 zoom = Vector2(3, 3)
 
-[node name="Inventory" parent="Player" instance=ExtResource("20_0v6ah")]
-offset_left = -192.355
-offset_top = -87.335
-offset_right = -192.355
-offset_bottom = -87.335
-scale = Vector2(0.335, 0.335)
+[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
+offset = Vector2(25, 100)
+scale = Vector2(0.745, 0.745)
+transform = Transform2D(0.745, 0, 0, 0.745, 25, 100)
+
+[node name="Inventory" parent="Player/CanvasLayer" instance=ExtResource("20_0v6ah")]
+offset_right = 5008.0
+offset_bottom = 2992.0
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -68,6 +71,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
+visible = false
 modulate = Color(0.41598, 0.41598, 0.41598, 1)
 texture_filter = 1
 layout_mode = 0
@@ -83,6 +87,11 @@ z_index = 1
 rooms = Array[PackedScene]([ExtResource("3_ilsdv"), ExtResource("4_ggu45"), ExtResource("5_7eaib"), ExtResource("6_uoxek"), ExtResource("7_suf27"), ExtResource("8_08eok"), ExtResource("9_ctkqe"), ExtResource("10_1ps6f"), ExtResource("11_klkg4"), ExtResource("12_hcgye"), ExtResource("13_f75i5"), ExtResource("14_mr00v"), ExtResource("15_l3lrx"), ExtResource("16_1nif7"), ExtResource("17_nrjtp"), ExtResource("18_xsovh")])
 tile_size = Vector2i(32, 32)
 room_size = Vector2i(16, 15)
+
+[node name="BulletUI" parent="." instance=ExtResource("22_iqovx")]
+
+[node name="BulletManager" type="Node2D" parent="."]
+script = ExtResource("23_e3ndg")
 
 [connection signal="generation_finished" from="." to="RoomSpawner" method="spawn_dungeon"]
 [connection signal="pressed" from="GenerateButton" to="." method="generate"]

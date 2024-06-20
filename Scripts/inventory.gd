@@ -7,6 +7,7 @@ extends Control
 @onready var col_count = grid_container.columns #save column number
 @onready var PickUpItem = preload("res://Scenes/pick_up_item.tscn")
 @onready var Player = get_tree().get_first_node_in_group("Player")
+@onready var AnimPlayer = $AnimationPlayer
 var items:Array
 var grid_array := []
 var item_held = null
@@ -17,11 +18,18 @@ enum States {DEFAULT, TAKEN, FREE}
 var state = States.DEFAULT
 var dragging = false
 var drag_preview = false
+var inv_visible:
+	set(value):
+		visible = value
+		if value:
+			AnimPlayer.play("open")
+		if not value:
+			AnimPlayer.play_backwards("open")
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for i in range(64):
+	for i in range(36):
 		create_slot()
-	for i in range(64):
+	for i in range(36):
 		if i>=10:
 			grid_container.get_child(i).accessible = false
 
@@ -73,6 +81,7 @@ func _on_slot_mouse_exited(a_Slot):
 func slot_clicked(a_Slot):
 	if not dragging:
 		if a_Slot.accessible:
+			print(a_Slot.global_position)
 			var preview_texture = TextureRect.new()
 			preview_texture.texture = a_Slot.texture
 			preview_texture.expand_mode = 2
@@ -157,8 +166,8 @@ func place_item():
 	item_held.global_position = get_global_mouse_position()
 	####
 	var calculated_grid_id = current_slot.slot_ID + icon_anchor.x * col_count + icon_anchor.y
+	print(grid_array[calculated_grid_id].global_position)
 	item_held._snap_to(grid_array[calculated_grid_id].global_position)
-
 	item_held.grid_anchor = current_slot
 	for grid in item_held.item_grids:
 		var grid_to_check = current_slot.slot_ID + grid[0] + grid[1] * col_count
@@ -241,9 +250,9 @@ func _unhandled_input(event):
 	if event.is_action_released("ui_focus_next"):
 		#get_tree().paused = visible
 		if visible:
-			visible = false
+			inv_visible = false
 		else:
-			visible = true
+			inv_visible  = true
 func add_slot():
 	var slots:Array
 	for child in grid_container.get_children():

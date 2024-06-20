@@ -14,7 +14,7 @@ signal bullet_ui()
 @onready var reloadTimer = $ReloadTimer
 @export var movement_speed = 300.0
 @export var direction_speed = 1.2
-@onready var Inventory = get_tree().get_first_node_in_group("Inventory")
+@onready var Inventory = find_child("CanvasLayer").find_child("Inventory")
 @onready var animation_player = $AnimationPlayer
 @onready var sprite_2d = $Sprite2D
 var weapons_path = "res://Data/Weapons/"
@@ -27,7 +27,6 @@ var pickup = false
 func _ready():
 	bullet_ui.emit()
 	change_gun()
-
 func _physics_process(delta):
 
 	var mouse_direction: Vector2 = (get_global_mouse_position() - global_position).normalized()

@@ -5,7 +5,11 @@ var y: int = 6
 var generateComplete:bool = false
 signal generation_finished(grid: Array[Array])
 var generation_done: bool = false
+@onready var BulletManager = $BulletManager
+@onready var BulletUI = $BulletUI
+@onready var Player = $Player
 func _ready():
+	Player.player_fired_bullet.connect(Callable(BulletManager,"handle_bullet_spawned"))
 	generate()
 func render_dungeon(grid: Array[Array]):
 	var x: int = grid[0].size()

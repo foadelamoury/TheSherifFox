@@ -44,5 +44,5 @@ func _unhandled_input(event):
 			Inventory.item_held = Item
 			#Item.get_child(0).expand_mode = TextureRect.EXPAND_KEEP_SIZE
 			if not Inventory.visible:
-				Inventory.visible = true
+				Inventory.inv_visible = true
 			queue_free()

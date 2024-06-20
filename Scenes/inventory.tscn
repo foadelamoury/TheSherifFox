@@ -1,39 +1,67 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdq71e34x3qx2"]
+[gd_scene load_steps=6 format=3 uid="uid://bdq71e34x3qx2"]
 
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="1_gqgwk"]
 [ext_resource type="Texture2D" uid="uid://c568qk2sqc58o" path="res://Images/BookInventory.webp" id="2_b8dia"]
+
+[sub_resource type="Animation" id="Animation_f16pu"]
+resource_name = "open"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-450, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nk3um"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_607xe"]
+_data = {
+"RESET": SubResource("Animation_nk3um"),
+"open": SubResource("Animation_f16pu")
+}
 
 [node name="Inventory" type="Control" groups=["Inventory"]]
 process_mode = 3
 z_index = 3
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -776.0
-offset_bottom = -284.0
+anchor_right = 0.171
+anchor_bottom = 0.312
+offset_right = 1531.96
+offset_bottom = 1571.88
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gqgwk")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 0
-offset_right = 597.0
-offset_bottom = 597.0
-scale = Vector2(0.74, 0.74)
-texture = ExtResource("2_b8dia")
+offset_right = 420.0
+offset_bottom = 520.0
+color = Color(1, 1, 1, 0)
 
 [node name="MarginContainer" type="MarginContainer" parent="Background"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 47.0
-offset_top = 65.0
-offset_right = -97.0
-offset_bottom = -108.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_right = 420.0
+offset_bottom = 520.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer"]
 layout_mode = 2
@@ -41,10 +69,23 @@ layout_mode = 2
 [node name="ScrollContainer" type="ScrollContainer" parent="Background/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 420)
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="GridContainer" type="GridContainer" parent="Background/MarginContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 8
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+z_index = -1
+layout_mode = 0
+offset_left = -50.0
+offset_top = -39.05
+offset_right = 547.0
+offset_bottom = 557.95
+texture = ExtResource("2_b8dia")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_607xe")
+}
