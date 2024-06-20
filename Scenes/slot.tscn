@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bwwf7txdqilrc"]
 
-[ext_resource type="Texture2D" uid="uid://dd3ppdnkci0bj" path="res://Assets/inventory_texture.png" id="1_7nt4n"]
+[ext_resource type="Texture2D" uid="uid://c3qcy8ofopbmw" path="res://Images/slot_icon.png" id="1_mhoni"]
 [ext_resource type="Script" path="res://Scripts/slot.gd" id="2_pelkb"]
 
 [node name="Slot" type="TextureRect" groups=["Slot"]]
@@ -8,7 +8,7 @@ process_mode = 3
 custom_minimum_size = Vector2(50, 50)
 offset_right = 50.0
 offset_bottom = 50.0
-texture = ExtResource("1_7nt4n")
+texture = ExtResource("1_mhoni")
 expand_mode = 1
 script = ExtResource("2_pelkb")
 

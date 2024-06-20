@@ -5,7 +5,6 @@ extends Control
 @onready var item_scene = preload("res://Scenes/item.tscn")
 @onready var scroll_container = $Background/MarginContainer/VBoxContainer/ScrollContainer
 @onready var col_count = grid_container.columns #save column number
-@onready var grid_container2 = $Background2/MarginContainer/VBoxContainer/ScrollContainer/GridContainer
 @onready var PickUpItem = preload("res://Scenes/pick_up_item.tscn")
 @onready var Player = get_tree().get_first_node_in_group("Player")
 var items:Array
@@ -20,9 +19,9 @@ var dragging = false
 var drag_preview = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for i in range(20):
+	for i in range(64):
 		create_slot()
-	for i in range(20):
+	for i in range(64):
 		if i>=10:
 			grid_container.get_child(i).accessible = false
 
@@ -89,19 +88,13 @@ func slot_clicked(a_Slot):
 	else:
 		if not a_Slot.accessible:
 			var preview = $Background.get_child(1)
-			a_Slot.filter.color = Color("#261515")
+			a_Slot.filter.color = Color("#f3d3ab")
 			#a_Slot.texture = preview.texture
 			a_Slot.accessible = true
 			preview.queue_free()
 			drag_preview = false
 			dragging = false
-func _on_button_spawn_pressed():
-	var new_item = item_scene.instantiate()
-	add_child(new_item)
-	new_item.load_item(randi_range(1,4))    #randomize this for different items to spawn
-	new_item.selected = true
-	item_held = new_item
-	
+
 	
 func check_slot_availability(a_Slot):
 	for grid in item_held.item_grids:
@@ -147,7 +140,7 @@ func clear_grid():
 			if slot.accessible:
 				slot.filter.color = Color("#ff000000")
 			else:
-				slot.filter.color = Color("#261515")
+				slot.filter.color = Color("#f3d3ab")
 func rotate_item():
 	item_held.rotate_item()
 	clear_grid()
@@ -243,9 +236,7 @@ func pickup_at_player():
 		grid_array[grid_to_check].item_stored = null
 	item_held = null
 	Player.check_gun()	
-func _on_add_slot_pressed():
-	#create_slot()
-	remove_slot()
+
 func _unhandled_input(event):
 	if event.is_action_released("ui_focus_next"):
 		#get_tree().paused = visible

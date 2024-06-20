@@ -13,7 +13,7 @@ var state = States.DEFAULT
 	set(value):
 		accessible = value
 		if not value:
-			filter.color = Color("#261515")
+			filter.color = Color("#f3d3ab")
 			state = States.TAKEN
 		else:
 			filter.color = Color("#ff000000")
@@ -25,7 +25,7 @@ var dragging = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if not accessible:
-		filter.color = Color(("#261515"))
+		filter.color = Color(("#f3d3ab"))
 		state = States.TAKEN
 func set_color(a_state = States.DEFAULT) -> void :
 	match a_state:

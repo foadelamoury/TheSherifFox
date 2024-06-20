@@ -50,11 +50,11 @@ scale = Vector2(5, 5)
 zoom = Vector2(3, 3)
 
 [node name="Inventory" parent="Player" instance=ExtResource("20_0v6ah")]
-offset_left = -226.185
-offset_top = -116.305
-offset_right = -226.185
-offset_bottom = -116.305
-scale = Vector2(0.32, 0.32)
+offset_left = -192.355
+offset_top = -87.335
+offset_right = -192.355
+offset_bottom = -87.335
+scale = Vector2(0.395, 0.395)
 
 [connection signal="generation_finished" from="." to="RoomSpawner" method="spawn_dungeon"]
 [connection signal="pressed" from="GenerateButton" to="." method="generate"]
