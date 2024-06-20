@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://bbfoan4dxnigf"]
+[gd_scene load_steps=24 format=3 uid="uid://bbfoan4dxnigf"]
 
 [ext_resource type="Script" path="res://Scripts/RoomGenerator.gd" id="1_s38h8"]
 [ext_resource type="PackedScene" uid="uid://1n1qvtpa6vvo" path="res://Scenes/room_spawner.tscn" id="2_js5le"]
 [ext_resource type="PackedScene" uid="uid://d2711uewjpi56" path="res://Scenes/Rooms/Generic/0.tscn" id="3_ilsdv"]
 [ext_resource type="PackedScene" uid="uid://drno1ttfebtwm" path="res://Scenes/Rooms/Generic/1.tscn" id="4_ggu45"]
+[ext_resource type="Texture2D" uid="uid://d3hpf10gikpbm" path="res://Images/forest tile (1).png" id="4_n514i"]
 [ext_resource type="PackedScene" uid="uid://blurbqqh74stb" path="res://Scenes/Rooms/Generic/2.tscn" id="5_7eaib"]
 [ext_resource type="PackedScene" uid="uid://4r2cdjv0pr45" path="res://Scenes/Rooms/Generic/3.tscn" id="6_uoxek"]
 [ext_resource type="PackedScene" uid="uid://d0fse6u1qfg45" path="res://Scenes/Rooms/Generic/4.tscn" id="7_suf27"]
@@ -23,13 +24,12 @@
 
 [sub_resource type="Theme" id="Theme_ki2xi"]
 
+[sub_resource type="Environment" id="Environment_2lhum"]
+background_mode = 3
+ambient_light_source = 2
+
 [node name="WorldGeneration" type="Node2D" groups=["WorldGen"]]
 script = ExtResource("1_s38h8")
-
-[node name="RoomSpawner" parent="." instance=ExtResource("2_js5le")]
-rooms = Array[PackedScene]([ExtResource("3_ilsdv"), ExtResource("4_ggu45"), ExtResource("5_7eaib"), ExtResource("6_uoxek"), ExtResource("7_suf27"), ExtResource("8_08eok"), ExtResource("9_ctkqe"), ExtResource("10_1ps6f"), ExtResource("11_klkg4"), ExtResource("12_hcgye"), ExtResource("13_f75i5"), ExtResource("14_mr00v"), ExtResource("15_l3lrx"), ExtResource("16_1nif7"), ExtResource("17_nrjtp"), ExtResource("18_xsovh")])
-tile_size = Vector2i(32, 32)
-room_size = Vector2i(16, 16)
 
 [node name="GenerateButton" type="Button" parent="."]
 visible = false
@@ -40,6 +40,9 @@ offset_bottom = 1360.0
 theme = SubResource("Theme_ki2xi")
 theme_override_font_sizes/font_size = 182
 text = "Generate"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2lhum")
 
 [node name="Player" parent="." instance=ExtResource("19_fm081")]
 position = Vector2(2000, 1000)
@@ -54,7 +57,32 @@ offset_left = -192.355
 offset_top = -87.335
 offset_right = -192.355
 offset_bottom = -87.335
-scale = Vector2(0.395, 0.395)
+scale = Vector2(0.335, 0.335)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+modulate = Color(0.41598, 0.41598, 0.41598, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = -6578.0
+offset_top = -6108.0
+offset_right = 3422.0
+offset_bottom = 3892.0
+texture = ExtResource("4_n514i")
+stretch_mode = 1
+
+[node name="RoomSpawner" parent="." instance=ExtResource("2_js5le")]
+z_index = 1
+rooms = Array[PackedScene]([ExtResource("3_ilsdv"), ExtResource("4_ggu45"), ExtResource("5_7eaib"), ExtResource("6_uoxek"), ExtResource("7_suf27"), ExtResource("8_08eok"), ExtResource("9_ctkqe"), ExtResource("10_1ps6f"), ExtResource("11_klkg4"), ExtResource("12_hcgye"), ExtResource("13_f75i5"), ExtResource("14_mr00v"), ExtResource("15_l3lrx"), ExtResource("16_1nif7"), ExtResource("17_nrjtp"), ExtResource("18_xsovh")])
+tile_size = Vector2i(32, 32)
+room_size = Vector2i(16, 15)
 
 [connection signal="generation_finished" from="." to="RoomSpawner" method="spawn_dungeon"]
 [connection signal="pressed" from="GenerateButton" to="." method="generate"]
