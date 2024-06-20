@@ -32,7 +32,6 @@ ambient_light_source = 2
 script = ExtResource("1_s38h8")
 
 [node name="GenerateButton" type="Button" parent="."]
-visible = false
 offset_left = 1810.0
 offset_top = 1103.0
 offset_right = 2813.0

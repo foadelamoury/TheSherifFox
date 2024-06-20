@@ -7,6 +7,7 @@ var first_room
 var room_int = 0
 @onready var Player = get_tree().get_first_node_in_group("Player")
 @onready var WorldGen = get_tree().get_first_node_in_group("WorldGen")
+
 func spawn_dungeon(dungeon: Array):
 	
 	for child in get_children():
