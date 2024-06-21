@@ -15,8 +15,7 @@ signal bullet_ui()
 @export var movement_speed = 300.0
 @export var direction_speed = 1.2
 @onready var Inventory = find_child("CanvasLayer").find_child("Inventory")
-@onready var animation_player = $AnimationPlayer
-@onready var sprite_2d = $Sprite2D
+@onready var sprite_2d = $AnimatedSprite2D
 var weapons_path = "res://Data/Weapons/"
 var weapons_folder = DirAccess.open(weapons_path)
 var weapon_wheel:int = 0
@@ -33,22 +32,23 @@ func _physics_process(delta):
 	var direction: Vector2 = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
 	
 	if direction:
+		velocity = direction * movement_speed
 		if direction.x:
 			if direction.x > 0:
 				sprite_2d.flip_h = false
 			else:
 				sprite_2d.flip_h = true
-			animation_player.play("RUN")
+			sprite_2d.play("walkSide")
 		elif direction.y:
 			if direction.y > 0:
-				animation_player.play("??")
+				sprite_2d.play("walkSouth")
 			else:
-				animation_player.play("??")
+				sprite_2d.play("walkNorth")
 	else:
 		velocity.x = move_toward(velocity.x,0,movement_speed)
 		velocity.y = move_toward(velocity.y,0,movement_speed)
 	if velocity == Vector2.ZERO:
-		animation_player.play("IDLE")
+		sprite_2d.play("idle")
 	if mouse_direction.x > 0:
 		if weapon_sprite.scale.y < 0:
 			weapon_sprite.scale.y = -weapon_sprite.scale.y

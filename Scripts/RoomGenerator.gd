@@ -166,8 +166,8 @@ func generate():
 	while not generation_done:
 		grid = make_grid(x, y)
 		grid = generate_dungeon(grid, 6, 0.25, 0)
-		#if grid is Array[Array]:
-		#	generation_done = true
+		if grid is Array[Array]:
+			generation_done = true
 	print("GEN004 | Room Generation OK")
 
 func _process(delta):

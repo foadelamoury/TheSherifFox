@@ -47,8 +47,7 @@ text = "Generate"
 environment = SubResource("Environment_2lhum")
 
 [node name="Player" parent="." instance=ExtResource("19_fm081")]
-z_index = 1
-position = Vector2(590, 349)
+position = Vector2(2000, 1000)
 scale = Vector2(1, 1)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
