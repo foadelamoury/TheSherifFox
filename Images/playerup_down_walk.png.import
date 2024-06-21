@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g2ynxnu5x1j0"
-path="res://.godot/imported/Rifle.png-2427ca15257125a0afd74dbff2009312.ctex"
+uid="uid://cyttxbuhxbrly"
+path="res://.godot/imported/playerup_down_walk.png-297b7e57c651dfda352209cf25b5cc89.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Rifle.png"
-dest_files=["res://.godot/imported/Rifle.png-2427ca15257125a0afd74dbff2009312.ctex"]
+source_file="res://Images/playerup_down_walk.png"
+dest_files=["res://.godot/imported/playerup_down_walk.png-297b7e57c651dfda352209cf25b5cc89.ctex"]
 
 [params]
 

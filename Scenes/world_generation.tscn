@@ -59,8 +59,8 @@ scale = Vector2(0.745, 0.745)
 transform = Transform2D(0.745, 0, 0, 0.745, 25, 100)
 
 [node name="Inventory" parent="Player/CanvasLayer" instance=ExtResource("20_0v6ah")]
-offset_right = 5008.0
-offset_bottom = 2992.0
+offset_right = 5204.99
+offset_bottom = 3194.18
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

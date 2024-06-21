@@ -20,7 +20,6 @@ signal bullet_ui()
 var weapons_path = "res://Data/Weapons/"
 var weapons_folder = DirAccess.open(weapons_path)
 var weapon_wheel:int = 0
-var flipped = false
 var shooting = false
 var reloading = false
 var pickup = false
@@ -34,21 +33,26 @@ func _physics_process(delta):
 	var direction: Vector2 = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
 	
 	if direction:
-		velocity = direction * movement_speed
-		animation_player.play("RUN")
+		if direction.x:
+			if direction.x > 0:
+				sprite_2d.flip_h = false
+			else:
+				sprite_2d.flip_h = true
+			animation_player.play("RUN")
+		elif direction.y:
+			if direction.y > 0:
+				animation_player.play("??")
+			else:
+				animation_player.play("??")
 	else:
 		velocity.x = move_toward(velocity.x,0,movement_speed)
 		velocity.y = move_toward(velocity.y,0,movement_speed)
 	if velocity == Vector2.ZERO:
 		animation_player.play("IDLE")
-	if mouse_direction.x > 0 and sprite_2d.flip_h:
-		flipped = false
-		sprite_2d.flip_h = false
+	if mouse_direction.x > 0:
 		if weapon_sprite.scale.y < 0:
 			weapon_sprite.scale.y = -weapon_sprite.scale.y
 	elif mouse_direction.x < 0 and !sprite_2d.flip_h:
-		flipped = true
-		sprite_2d.flip_h = true
 		if weapon_sprite.scale.y > 0:
 			weapon_sprite.scale.y = -weapon_sprite.scale.y
 	move_and_slide()
