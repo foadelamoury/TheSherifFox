@@ -21,6 +21,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
 texture = ExtResource("3_ah10w")
 stretch_mode = 3
 
@@ -34,5 +35,6 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
 texture = ExtResource("3_ah10w")
 stretch_mode = 3

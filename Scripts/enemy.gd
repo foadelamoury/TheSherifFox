@@ -23,7 +23,7 @@ extends CharacterBody2D
 @onready var shootTimer:Timer = $ShootTimer
 @onready var reloadTimer:Timer = $ReloadTimer
 @onready var waitTimer:Timer = $WaitTimer
-@onready var AnimPlayer:AnimationPlayer = $AnimationPlayer
+@onready var AnimPlayer = $Sprite2D
 @onready var PickUpItem = preload("res://Scenes/pick_up_item.tscn")
 func _ready():
 	
@@ -46,10 +46,10 @@ func _ready():
 func _physics_process(delta):
 	if velocity == Vector2(0,0):
 		if not AnimPlayer.is_playing():
-			AnimPlayer.play("IDLE")
+			AnimPlayer.play("FrontIdle")
 	else:
 		if not AnimPlayer.is_playing():
-			AnimPlayer.play("WALK")
+			AnimPlayer.play("FrontIdle")
 	move_and_slide()
 
 func die():

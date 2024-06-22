@@ -10,6 +10,7 @@ var generation_done: bool = false
 @onready var Player = $Player
 func _ready():
 	Player.player_fired_bullet.connect(Callable(BulletManager,"handle_bullet_spawned"))
+	OS.alert("Ok")
 	generate()
 func render_dungeon(grid: Array[Array]):
 	var x: int = grid[0].size()
@@ -56,7 +57,7 @@ func generate_dungeon(grid: Array[Array], branch_length: int, dead_end_chance: f
 
 	# Generate starting room
 	_grid[current_y][current_x] = Room.new(Room.room_type.START, [])
-
+	OS.alert("generating dungeoj")
 	for i in range(branch_length):
 		var directions: Array[Array] = get_directions(x_size, y_size, current_x, current_y, _grid)
 
@@ -90,6 +91,7 @@ func generate_dungeon(grid: Array[Array], branch_length: int, dead_end_chance: f
 			
 			_grid[last_coordinate[0]][last_coordinate[1]].directions.append(room_dir)
 			_grid[current_y][current_x] = Room.new(Room.room_type.END, []) if i == branch_length - 1 else Room.new(Room.room_type.MAIN_BRANCH, [inverse_room_dir])
+			OS.alert(" Made Room"+str(i)) 
 		else:
 			return -1
 			
@@ -139,6 +141,7 @@ func generate_dungeon(grid: Array[Array], branch_length: int, dead_end_chance: f
 					generation_finished.emit(_grid)
 			current_x += 1
 		current_y += 1
+		Player.postion = Vector2(current_x, current_y)
 	return _grid
 
 func get_directions(max_x: int, max_y: int, x: int, y: int, grid: Array[Array]) -> Array[Array]:
@@ -165,6 +168,7 @@ func generate():
 	var grid: Variant
 	while not generation_done:
 		grid = make_grid(x, y)
+		OS.alert("MakingGrids done")
 		grid = generate_dungeon(grid, 6, 0.25, 0)
 		if grid is Array[Array]:
 			generation_done = true
