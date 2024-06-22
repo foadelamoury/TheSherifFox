@@ -5,8 +5,8 @@ extends Node2D
 @export var room_size: Vector2i
 var first_room
 var room_int = 0
-@onready var Player = get_tree().get_first_node_in_group("Player")
-@onready var WorldGen = get_tree().get_first_node_in_group("WorldGen")
+@onready var player = get_tree().get_first_node_in_group("Player")
+@onready var worldGen = get_tree().get_first_node_in_group("WorldGen")
 
 func spawn_dungeon(dungeon: Array):
 	
@@ -38,11 +38,10 @@ func spawn_dungeon(dungeon: Array):
 				var room_scene = load(rooms[dirval].resource_path).instantiate()
 				room_scene.position = Vector2i(x, y) * room_size * tile_size
 				add_child(room_scene)
-				WorldGen.generation_done = true
-				room_int +=1
-				if room_int == 1:
-					if room_scene.is_in_group("BossRoom"):
-						print("Boss")
-						room_int = 0
-					else:
-						Player.global_position = room_scene.global_position
+				
+				if room.type == Room.room_type.START:
+					player.position.x = x * room_size.x * tile_size.x
+					player.position.y = y * room_size.y * tile_size.y
+				
+				worldGen.generation_done = true
+				room_int += 1

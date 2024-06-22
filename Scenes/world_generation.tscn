@@ -185,4 +185,5 @@ room_size = Vector2i(16, 15)
 [node name="BulletManager" type="Node2D" parent="."]
 script = ExtResource("23_e3ndg")
 
+[connection signal="generation_finished" from="." to="RoomSpawner" method="spawn_dungeon"]
 [connection signal="pressed" from="GenerateButton" to="." method="generate"]

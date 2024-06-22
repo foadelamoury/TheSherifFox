@@ -192,6 +192,7 @@ func place_item():
 	if Player.pickup:
 		Player.pickup = false
 	clear_grid()
+
 func pick_item():
 	if dragging:
 		return
@@ -231,12 +232,13 @@ func place_pickup():
 func pickup_at_player():
 	var new_pickup = PickUpItem.instantiate()
 	#new_pickup.get_child(0).load_item(item_held.item_ID)
+	## TODO: Make this better bc it's too error prone
 	var item = new_pickup.get_child(0)
 	var icon:TextureRect = new_pickup.get_child(0).get_child(0)
 	item.item_ID = item_held.item_ID
 	#icon.expand_mode = TextureRect.EXPAND_KEEP_SIZE
 	get_tree().get_root().add_child(new_pickup)
-	new_pickup.global_position =  Player.global_position+ Vector2(randf_range(0,3),randf_range(0,3))
+	new_pickup.global_position =  Player.global_position + Vector2(randf_range(0,3),randf_range(0,3))
 	item_held.get_parent().remove_child(item_held)
 	items.erase(item_held)
 	for grid in item_held.item_grids:

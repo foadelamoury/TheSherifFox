@@ -41,6 +41,7 @@ func _unhandled_input(event):
 			Item.load_item(Item.item_ID)    #randomize this for different items to spawn
 			Item.scale = Vector2(2,2)
 			Item.selected = true
+			print("pick_up_item:44 001")
 			Inventory.item_held = Item
 			#Item.get_child(0).expand_mode = TextureRect.EXPAND_KEEP_SIZE
 			if not Inventory.visible:
