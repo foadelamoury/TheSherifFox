@@ -36,6 +36,7 @@ func _unhandled_input(event):
 					pickup = true
 					Outline.visible = true
 		if pickup and not Player.pickup:
+			Player.get_node("collectitem").play()
 			Player.pickup = true
 			Item.reparent(Inventory)
 			Item.load_item(Item.item_ID)    #randomize this for different items to spawn
@@ -46,3 +47,4 @@ func _unhandled_input(event):
 			if not Inventory.visible:
 				Inventory.inv_visible = true
 			queue_free()
+		

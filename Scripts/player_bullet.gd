@@ -4,6 +4,8 @@ extends Area2D
 @export var damage:int = 1
 var bullet_direction = Vector2.ZERO
 var AnimPlayer:AnimationPlayer
+
+
 func _ready():
 	AnimPlayer = find_child("AnimationPlayer")
 	if AnimPlayer:

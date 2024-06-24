@@ -170,4 +170,7 @@ func generate():
 	print("GEN004 | Room Generation OK")
 
 func _process(delta):
-	pass
+	if DataHandler.EnemyLeft <= 0:
+		$BossTele/Label.text = "Enter to Meet Boss"
+	elif DataHandler.EnemyLeft > 0:
+		$BossTele/Label.text = "Kill all Enemies First"

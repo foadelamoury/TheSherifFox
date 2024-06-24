@@ -7,6 +7,7 @@ var first_room
 var room_int = 0
 @onready var player = get_tree().get_first_node_in_group("Player")
 @onready var worldGen = get_tree().get_first_node_in_group("WorldGen")
+@onready var BossTele = get_tree().get_first_node_in_group("Bosstele")
 
 func spawn_dungeon(dungeon: Array):
 	
@@ -42,6 +43,8 @@ func spawn_dungeon(dungeon: Array):
 				if room.type == Room.room_type.START:
 					player.position.x = x * room_size.x * tile_size.x
 					player.position.y = y * room_size.y * tile_size.y
+					BossTele.position.x = x * room_size.x * tile_size.x 
+					BossTele.position.y = y * room_size.y * tile_size.y - 150
 				
 				worldGen.generation_done = true
 				room_int += 1
