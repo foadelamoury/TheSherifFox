@@ -1,5 +1,14 @@
 extends Node
 
+var cutscene = false
+var CameraShake = false
+var bosspos
+var EnemyLeft = 0
+var BossFight = false
+var Inventoryitems:Array
+var gunequipped: Weapon
+var BulletTex = "Default"
+
 var item_data := {}
 var item_grid_data := {}
 @onready var item_data_path = "res://Data/Item_data.json"
