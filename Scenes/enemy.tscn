@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_b21x8"]
 [ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="2_f3hho"]
 [ext_resource type="Resource" uid="uid://53mjo0ws8c1i" path="res://Data/Weapons/Bow.tres" id="2_ids7m"]
-[ext_resource type="PackedScene" uid="uid://c1yakuev2ov6r" path="res://Scenes/enemy_bullet_Arrow.tscn" id="3_1f2lq"]
+[ext_resource type="PackedScene" uid="uid://b6ujulqhvn8pl" path="res://Scenes/basic_enemy_bullet.tscn" id="3_2k2oe"]
 [ext_resource type="Script" path="res://Scripts/EnemyIdle.gd" id="4_scs68"]
 [ext_resource type="Texture2D" uid="uid://g2ynxnu5x1j0" path="res://Assets/Rifle.png" id="4_sxo84"]
 [ext_resource type="Texture2D" uid="uid://b5fqf13g3figs" path="res://Assets/SBID.png" id="4_yxisj"]
@@ -110,12 +110,12 @@ corner_radius_bottom_left = 2
 anti_aliasing = false
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
-scale = Vector2(2, 2)
+scale = Vector2(1.3, 1.3)
 motion_mode = 1
 script = ExtResource("1_b21x8")
 range = 200.0
 weapon_equipped = ExtResource("2_ids7m")
-bullet_type = ExtResource("3_1f2lq")
+bullet_type = ExtResource("3_2k2oe")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 2

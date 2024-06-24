@@ -1,9 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://bbfoan4dxnigf"]
+[gd_scene load_steps=27 format=3 uid="uid://bbfoan4dxnigf"]
 
 [ext_resource type="Script" path="res://Scripts/RoomGenerator.gd" id="1_s38h8"]
 [ext_resource type="PackedScene" uid="uid://1n1qvtpa6vvo" path="res://Scenes/room_spawner.tscn" id="2_js5le"]
 [ext_resource type="PackedScene" uid="uid://d2711uewjpi56" path="res://Scenes/Rooms/Generic/0.tscn" id="3_ilsdv"]
-[ext_resource type="Texture2D" uid="uid://2b1t5o0yf335" path="res://Assets/UpBtn.png" id="4_3xndk"]
 [ext_resource type="PackedScene" uid="uid://drno1ttfebtwm" path="res://Scenes/Rooms/Generic/1.tscn" id="4_ggu45"]
 [ext_resource type="Texture2D" uid="uid://d3hpf10gikpbm" path="res://Images/forest tile (1).png" id="4_n514i"]
 [ext_resource type="PackedScene" uid="uid://blurbqqh74stb" path="res://Scenes/Rooms/Generic/2.tscn" id="5_7eaib"]
@@ -21,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://dw3yqj6vcvqqr" path="res://Scenes/Rooms/Generic/14.tscn" id="17_nrjtp"]
 [ext_resource type="PackedScene" uid="uid://cfby7qn2u644v" path="res://Scenes/Rooms/Generic/15.tscn" id="18_xsovh"]
 [ext_resource type="PackedScene" uid="uid://cacmnwuabbpi6" path="res://Scenes/player.tscn" id="19_fm081"]
-[ext_resource type="PackedScene" uid="uid://bdq71e34x3qx2" path="res://Scenes/inventory.tscn" id="20_0v6ah"]
 [ext_resource type="PackedScene" uid="uid://cfvc1fgbr5qcm" path="res://Scenes/bullet_ui.tscn" id="22_iqovx"]
 [ext_resource type="Script" path="res://Scripts/BulletManager.gd" id="23_e3ndg"]
 
@@ -31,19 +29,14 @@
 background_mode = 3
 ambient_light_source = 2
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ii0kq"]
-radius = 15.0
+[sub_resource type="SphereMesh" id="SphereMesh_5b0q7"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_ee0gy"]
-radius = 15.0
-height = 30.0
-
-[sub_resource type="SphereMesh" id="SphereMesh_aw3ie"]
-radius = 15.0
-height = 30.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_74fw5"]
+radius = 18.1108
 
 [node name="WorldGeneration" type="Node2D" groups=["WorldGen"]]
 script = ExtResource("1_s38h8")
+metadata/_edit_vertical_guides_ = [1855.0]
 
 [node name="GenerateButton" type="Button" parent="."]
 visible = false
@@ -62,98 +55,6 @@ environment = SubResource("Environment_2lhum")
 z_index = 1
 position = Vector2(2066, 1224)
 scale = Vector2(1, 1)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(3, 3)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
-offset = Vector2(25, 100)
-scale = Vector2(0.745, 0.745)
-transform = Transform2D(0.745, 0, 0, 0.745, 25, 100)
-
-[node name="Inventory" parent="Player/CanvasLayer" instance=ExtResource("20_0v6ah")]
-visible = false
-offset_right = 8947.8
-offset_bottom = 7035.59
-
-[node name="TouchBtns" type="Node2D" parent="Player"]
-visible = false
-z_index = 3
-
-[node name="down" type="TouchScreenButton" parent="Player/TouchBtns"]
-position = Vector2(-109, 102)
-rotation = -3.14159
-scale = Vector2(1.1, 1.1)
-texture_normal = ExtResource("4_3xndk")
-shape = SubResource("CircleShape2D_ii0kq")
-action = "ui_down"
-
-[node name="left" type="TouchScreenButton" parent="Player/TouchBtns"]
-position = Vector2(-176, 75)
-rotation = -1.5708
-scale = Vector2(1.1, 1.1)
-texture_normal = ExtResource("4_3xndk")
-shape = SubResource("CircleShape2D_ii0kq")
-action = "ui_left"
-
-[node name="Inventory" type="TouchScreenButton" parent="Player/TouchBtns"]
-position = Vector2(5, 83)
-scale = Vector2(1.5, 1.5)
-shape = SubResource("CircleShape2D_ii0kq")
-action = "ui_focus_next"
-
-[node name="Shoot" type="TouchScreenButton" parent="Player/TouchBtns"]
-position = Vector2(131, 72)
-scale = Vector2(1.5, 1.5)
-shape = SubResource("CircleShape2D_ii0kq")
-action = "shoot"
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Player/TouchBtns/Shoot"]
-modulate = Color(1, 0.960784, 0.231373, 0.439216)
-mesh = SubResource("SphereMesh_ee0gy")
-
-[node name="Label" type="Label" parent="Player/TouchBtns/Shoot"]
-modulate = Color(0.248566, 0.248566, 0.248566, 1)
-offset_left = -9.33333
-offset_top = -4.0
-offset_right = 35.6667
-offset_bottom = 19.0
-scale = Vector2(0.4, 0.4)
-text = "Shoot"
-
-[node name="pickup" type="TouchScreenButton" parent="Player/TouchBtns"]
-position = Vector2(164, 27)
-scale = Vector2(1.1, 1.1)
-shape = SubResource("CircleShape2D_ii0kq")
-action = "pickup"
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Player/TouchBtns/pickup"]
-modulate = Color(1, 0.447059, 0.0784314, 0.403922)
-mesh = SubResource("SphereMesh_aw3ie")
-
-[node name="Label" type="Label" parent="Player/TouchBtns/pickup"]
-modulate = Color(0.146567, 0.146567, 0.146567, 1)
-offset_left = -8.18182
-offset_top = -3.63636
-offset_right = 31.8182
-offset_bottom = 19.3636
-scale = Vector2(0.4, 0.4)
-text = "Pick"
-
-[node name="Up" type="TouchScreenButton" parent="Player/TouchBtns"]
-position = Vector2(-143, 10)
-scale = Vector2(1.1, 1.1)
-texture_normal = ExtResource("4_3xndk")
-shape = SubResource("CircleShape2D_ii0kq")
-action = "ui_up"
-
-[node name="right" type="TouchScreenButton" parent="Player/TouchBtns"]
-position = Vector2(-72, 42)
-rotation = 1.5708
-scale = Vector2(1.1, 1.1)
-texture_normal = ExtResource("4_3xndk")
-shape = SubResource("CircleShape2D_ii0kq")
-action = "ui_right"
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -182,9 +83,30 @@ tile_size = Vector2i(32, 32)
 room_size = Vector2i(16, 15)
 
 [node name="BulletUI" parent="." instance=ExtResource("22_iqovx")]
+visible = false
 
 [node name="BulletManager" type="Node2D" parent="."]
 script = ExtResource("23_e3ndg")
 
+[node name="BossTele" type="Area2D" parent="." groups=["Bosstele"]]
+position = Vector2(2028, 1171)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="BossTele"]
+modulate = Color(0.2, 0.223529, 0.482353, 0.866667)
+scale = Vector2(37, 37)
+mesh = SubResource("SphereMesh_5b0q7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossTele"]
+shape = SubResource("CircleShape2D_74fw5")
+
+[node name="Label" type="Label" parent="BossTele"]
+offset_left = -44.0
+offset_top = -34.0
+offset_right = 103.0
+offset_bottom = -11.0
+scale = Vector2(0.6, 0.6)
+text = "Enter to meet Boss"
+
 [connection signal="generation_finished" from="." to="RoomSpawner" method="spawn_dungeon"]
 [connection signal="pressed" from="GenerateButton" to="." method="generate"]
+[connection signal="body_entered" from="BossTele" to="Player" method="_on_boss_tele_area_entered"]

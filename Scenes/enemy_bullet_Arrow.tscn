@@ -12,18 +12,18 @@ one_shot = true
 autostart = true
 
 [node name="BasicEnemyBullet9" parent="." instance=ExtResource("2_w4qrt")]
-position = Vector2(0, -40)
-
-[node name="BasicEnemyBullet10" parent="." instance=ExtResource("2_w4qrt")]
-position = Vector2(40, 40)
+position = Vector2(0.000143052, -40)
 
 [node name="BasicEnemyBullet11" parent="." instance=ExtResource("2_w4qrt")]
-position = Vector2(-40, 40)
+position = Vector2(-40.0001, 39.9999)
 
 [node name="BasicEnemyBullet12" parent="." instance=ExtResource("2_w4qrt")]
-position = Vector2(-20, 0)
+position = Vector2(-20, -7.15256e-05)
 
 [node name="BasicEnemyBullet13" parent="." instance=ExtResource("2_w4qrt")]
-position = Vector2(20, 0)
+position = Vector2(20, 7.15256e-05)
+
+[node name="BasicEnemyBullet10" parent="." instance=ExtResource("2_w4qrt")]
+position = Vector2(39.9999, 40.0001)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

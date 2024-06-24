@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6ujulqhvn8pl"]
+[gd_scene load_steps=5 format=3 uid="uid://b6ujulqhvn8pl"]
 
-[ext_resource type="Texture2D" uid="uid://u44oivn1i8co" path="res://Images/enemy_projectile_icon.png" id="1_b00tq"]
 [ext_resource type="Script" path="res://Scripts/basic_enemy_bullet.gd" id="1_he6iv"]
+[ext_resource type="Texture2D" uid="uid://dn27ihebxrk1b" path="res://Assets/BouldernStoneProjectile.png" id="2_std43"]
+[ext_resource type="Texture2D" uid="uid://u44oivn1i8co" path="res://Images/enemy_projectile_icon.png" id="3_d5thh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3wrp1"]
 radius = 11.1
@@ -10,13 +11,21 @@ radius = 11.1
 script = ExtResource("1_he6iv")
 speed = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_3wrp1")
+[node name="BulletImgs" type="Node2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Default" type="Sprite2D" parent="BulletImgs"]
+visible = false
 texture_filter = 1
 scale = Vector2(1.34, 1.34)
-texture = ExtResource("1_b00tq")
+texture = ExtResource("3_d5thh")
+
+[node name="Stone" type="Sprite2D" parent="BulletImgs"]
+texture_filter = 1
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("2_std43")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3wrp1")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
